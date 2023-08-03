@@ -1,5 +1,32 @@
+<script setup lang="ts">
+import Logo from '@/components/Logo.vue'
+import { computed, ref } from 'vue'
+import { menus, subMenus } from '../const.ts'
+import CarIcon from './CarIcon.vue'
+import CarItems from './CarItems.vue'
+
+const isDark = ref(false)
+const isCarsVisible = ref(false)
+const isDarkTheme = computed(() => isDark.value || isCarsVisible.value)
+
+const timer = ref<NodeJS.Timer>()
+function handleVisibleChange(visible = true) {
+  if (visible) {
+    clearTimeout(timer.value)
+    isCarsVisible.value = true
+  } else {
+    timer.value = setTimeout(() => {
+      isCarsVisible.value = false
+    }, 100)
+  }
+}
+</script>
+
 <template>
-  <div class="container" :class="{ 'dark-theme': isDarkTheme }">
+  <div
+    class="header"
+    :class="{ 'dark-theme': isDarkTheme, 'cars-visible': isCarsVisible }"
+  >
     <RouterLink to="/">
       <Logo :fill="isDarkTheme ? '#000' : '#fff'" />
     </RouterLink>
@@ -7,12 +34,10 @@
     <div class="menus">
       <div
         class="menu-item-wrapper"
-        @mouseenter="showCars = true"
-        @mouseleave="showCars = false"
+        @mouseenter="handleVisibleChange"
+        @mouseleave="handleVisibleChange(false)"
       >
-        <div class="car-animation">
-          <CarIcon :is-moved="showCars" />
-        </div>
+        <CarIcon :moved="isCarsVisible" />
         <a class="menu-item">车型</a>
       </div>
       <div class="menu-item-wrapper" v-for="item in menus" :key="item.name">
@@ -43,20 +68,16 @@
       <RouterLink to="/login" class="btn btn-login">登录</RouterLink>
     </div>
   </div>
+
+  <CarItems
+    :visible="isCarsVisible"
+    @mouseenter="handleVisibleChange"
+    @mouseleave="handleVisibleChange(false)"
+  />
 </template>
 
-<script setup lang="ts">
-import Logo from '@/components/Logo.vue'
-import CarIcon from './CarIcon.vue'
-import { ref } from 'vue'
-import { menus, subMenus } from './const.ts'
-
-const isDarkTheme = ref(false)
-const showCars = ref(false)
-</script>
-
 <style scoped>
-.container {
+.header {
   position: fixed;
   top: 0;
   left: 0;
@@ -70,7 +91,11 @@ const showCars = ref(false)
 
   &.dark-theme {
     background-color: #fff;
-    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+    border-bottom: 0.1rem solid rgba(0, 0, 0, 0.05);
+
+    &.cars-visible {
+      border-bottom: none;
+    }
 
     .menu-item,
     .btn {
@@ -155,16 +180,6 @@ const showCars = ref(false)
     }
   }
 
-  .car-animation {
-    width: 19.6rem;
-    height: 5.6rem;
-    position: absolute;
-    left: 1.6rem;
-    top: 50%;
-    transform: translate(-100%, -50%);
-    overflow: hidden;
-  }
-
   .menu-item {
     margin: 0 2.8rem;
     height: 3.5rem;
@@ -195,8 +210,8 @@ const showCars = ref(false)
   left: 50%;
   transform: translate(-50%, 100%);
   padding: 0.8rem 0;
-  box-shadow: 0 4px 0.3rem rgba(0, 0, 0, 0.05);
-  border-radius: 4px;
+  box-shadow: 0 0.4rem 0.3rem rgba(0, 0, 0, 0.05);
+  border-radius: 0.4rem;
   background-color: #fff;
   color: #000;
 
