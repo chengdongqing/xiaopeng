@@ -1,7 +1,9 @@
 <template>
-  <img
-    src="https://s.xiaopeng.com/xp-fe/mainsite/2023/g6/v1_5/p1-2.12.0.jpg"
+  <video
+    src="https://xps02.xiaopeng.com/cms/material/video/2023/06-29/video_20230629100416_00416.mp4"
     style="width: 100%"
+    autoplay
+    muted
+    loop
   />
 </template>
-<script setup></script>

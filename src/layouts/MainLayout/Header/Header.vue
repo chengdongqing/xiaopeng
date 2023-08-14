@@ -2,7 +2,7 @@
 import Logo from '@/components/Logo.vue'
 import { computed, ref } from 'vue'
 import { menus, subMenus } from '../const.ts'
-import CarIcon from './CarIcon.vue'
+import CarAnimationIcon from './CarAnimationIcon.vue'
 import CarItems from './CarItems.vue'
 
 const isDark = ref(false)
@@ -37,7 +37,7 @@ function handleVisibleChange(visible = true) {
         @mouseenter="handleVisibleChange"
         @mouseleave="handleVisibleChange(false)"
       >
-        <CarIcon :moved="isCarsVisible" />
+        <CarAnimationIcon :moved="isCarsVisible" />
         <a class="menu-item">车型</a>
       </div>
       <div class="menu-item-wrapper" v-for="item in menus" :key="item.name">
