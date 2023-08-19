@@ -1,26 +1,39 @@
 :root {
-  --primary-color: #a4ce4c;
+    --primary-color: #a4ce4c;
+}
+
+@font-face {
+    font-family: HYYakuHei;
+    src: url(https://dl.xiaopeng.com/xp-fe/mainsite/2023/fonts/HYYakuHei.woff2) format("woff2")
+}
+@font-face {
+    font-family: BasisGrotesque-Regular;
+    src: url(https://dl.xiaopeng.com/xp-fe/mainsite/2023/fonts/BasisGrotesque-Regular.woff2) format("woff2")
+}
+@font-face {
+    font-family: FuturaBT-BoldItalic;
+    src: url(https://dl.xiaopeng.com/xp-fe/mainsite/2023/fonts/FuturaBT-BoldItalic.woff2) format("woff2")
 }
 
 *,
 *::before,
 *::after {
-  margin: 0;
-  padding: 0;
-  color: unset;
-  outline: none;
-  user-select: none;
-  text-decoration: none;
-  position: relative;
-  font-weight: normal;
-  box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    color: unset;
+    outline: none;
+    user-select: none;
+    text-decoration: none;
+    position: relative;
+    font-weight: normal;
+    box-sizing: border-box;
 }
 
 html {
-  font-size: 10px;
+    font-size: 10px;
 }
 
 img,
 video {
-  vertical-align: middle;
+    vertical-align: middle;
 }

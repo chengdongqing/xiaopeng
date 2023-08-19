@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import Logo from '@/components/Logo.vue'
+import Logo from '@/components/Icons/Logo.vue'
 import { computed, ref } from 'vue'
 import { menus, subMenus } from '../const.ts'
 import CarAnimationIcon from './CarAnimationIcon.vue'
