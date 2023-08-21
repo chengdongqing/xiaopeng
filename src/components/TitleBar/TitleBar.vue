@@ -2,13 +2,14 @@
 defineProps<{
   title: string
   subtitle: string
+  color?: string
 }>()
 </script>
 
 <template>
   <div class="container">
-    <div class="title">{{ title }}</div>
-    <div class="subtitle">{{ subtitle }}</div>
+    <div class="title" :style="{ color }">{{ title }}</div>
+    <div class="subtitle" :style="{ color }">{{ subtitle }}</div>
     <slot />
   </div>
 </template>

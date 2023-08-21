@@ -3,7 +3,9 @@ import AboutUs from './AboutUs/AboutUs.vue'
 import AfterSale from './AfterSale/AfterSale.vue'
 import CarBanners from './CarBanners/CarBanners.vue'
 import ChargingService from './ChargingService/ChargingService.vue'
+import NewsCenter from './NewsCenter/NewsCenter.vue'
 import RotatingCars from './RotatingCars/RotatingCars.vue'
+import Store from './Store/Store.vue'
 </script>
 
 <template>
@@ -12,4 +14,6 @@ import RotatingCars from './RotatingCars/RotatingCars.vue'
   <ChargingService />
   <AfterSale />
   <AboutUs />
+  <NewsCenter />
+  <Store />
 </template>

@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import Button from '@/components/Button/Button.vue'
 import Grid from '@/components/Grid/Grid.vue'
+import ScalableImage from '@/components/ScalableImage/ScalableImage.vue'
 import TitleBar from '@/components/TitleBar/TitleBar.vue'
 import services from './services.ts'
 </script>
@@ -14,9 +15,7 @@ import services from './services.ts'
 
     <Grid columns="3" item-width="41.8rem" gap="3.2rem">
       <div v-for="item in services" :key="item.name">
-        <div class="img-wrapper">
-          <img :src="item.pictureUrl" alt="" class="img" />
-        </div>
+        <ScalableImage :src="item.pictureUrl" class="img" />
         <div class="name">{{ item.name }}</div>
         <div class="description">{{ item.description }}</div>
         <div class="remark" v-if="item.remark">*{{ item.remark }}</div>
@@ -35,24 +34,9 @@ import services from './services.ts'
   padding-bottom: 12rem;
 }
 
-.img-wrapper {
+.img {
   height: 31.4rem;
-  border-radius: 0.4rem;
   margin-bottom: 2.4rem;
-  overflow: hidden;
-
-  .img {
-    width: 100%;
-    height: 100%;
-    overflow: hidden;
-    border-radius: 0.4rem;
-    margin-bottom: 2.4rem;
-    transition: 0.3s;
-
-    &:hover {
-      transform: scale(1.2);
-    }
-  }
 }
 
 .name {

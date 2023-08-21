@@ -15,9 +15,12 @@ const playVideo = useVideoPlay(videoRef)
 <template>
   <div class="container" ref="containerRef">
     <video
-      :style="{ width: `${scale}%`, height: `${scale}%` }"
+      :style="{
+        width: `${scale}%`,
+        height: `${scale}%`,
+        'object-fit': 'cover'
+      }"
       src="https://s.xiaopeng.com/xp-fe/mainsite/2023/home/explore.mp4"
-      class="video"
       autoplay
       muted
       loop
@@ -27,7 +30,8 @@ const playVideo = useVideoPlay(videoRef)
       <div
         class="title"
         :style="{
-          transform: `translate3d(0, ${100 - scale}px, 0)`
+          transform: `translate3d(0, ${100 - scale}px, 0)`,
+          opacity: scale / 100
         }"
       >
         未来出行探索者
@@ -35,7 +39,8 @@ const playVideo = useVideoPlay(videoRef)
       <div
         class="subtitle"
         :style="{
-          transform: `translate3d(0, ${100 - scale}px, 0)`
+          transform: `translate3d(0, ${100 * 4 - scale * 4}px, 0)`,
+          opacity: scale === 100 ? 1 : scale / 100 - 0.3
         }"
       >
         用科技为人类创造更便捷愉悦的出行生活
@@ -47,7 +52,8 @@ const playVideo = useVideoPlay(videoRef)
           arrow-color="#fff"
           class="about"
           :style="{
-            transform: `translate3d(0, ${100 - scale}px, 0)`
+            transform: `translate3d(0, ${100 * 8 - scale * 8}px, 0)`,
+            opacity: scale === 100 ? 1 : scale / 100 - 0.6
           }"
         >
           关于小鹏
@@ -58,7 +64,7 @@ const playVideo = useVideoPlay(videoRef)
     <PlayIcon class="icon-play" @click="playVideo" />
     <video
       src="https://s.xiaopeng.com/xp-fe/mainsite/2023/home/explore-full.mp4"
-      style="height: 0"
+      style="width: 0; height: 0"
       ref="videoRef"
     />
   </div>
@@ -66,15 +72,8 @@ const playVideo = useVideoPlay(videoRef)
 
 <style scoped>
 .container {
-  width: 100vw;
   height: 100vh;
   text-align: center;
-}
-
-.video {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
 }
 
 .content {
