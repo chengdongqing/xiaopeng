@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import Button from '@/components/Button/Button.vue'
-import X from '@/components/Icons/X.vue'
+import XIcon from '@/components/Icons/X.vue'
 </script>
 
 <template>
@@ -14,7 +14,7 @@ import X from '@/components/Icons/X.vue'
         loop
       />
       <div class="content-wrapper">
-        <X class="x" />
+        <XIcon class="x" />
         <div class="title">
           小鹏<span class="en">G6 </span> 超智驾轿跑<span class="en">SUV</span>
           <br />

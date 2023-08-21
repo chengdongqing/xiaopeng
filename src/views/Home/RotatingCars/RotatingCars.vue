@@ -91,8 +91,7 @@ function handleMouseLeave() {
         src="https://xps01.xiaopeng.com/www/public/img/mouse.73b63bed.svg"
         :class="['mouse-icon', { active: mouse.visible }]"
         :style="{
-          left: `${mouse.position[0]}px`,
-          top: `${mouse.position[1]}px`
+          transform: `translate3d(calc(-50% + ${mouse.position[0]}px), calc(-50% + ${mouse.position[1]}px), 0)`
         }"
       />
     </div>
@@ -157,7 +156,6 @@ function handleMouseLeave() {
     left: 0;
     top: 0;
     z-index: 1;
-    transform: translate(-50%, -50%);
     transition:
       width 0.3s,
       opacity 0.3s;

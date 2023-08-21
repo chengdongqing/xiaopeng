@@ -27,7 +27,8 @@ defineProps({
 <style scoped>
 .btn {
   z-index: 0;
-  padding: 1rem 3.2rem;
+  height: 4.4rem;
+  padding: 0 3.2rem;
   display: inline-flex;
   align-items: center;
   justify-content: center;

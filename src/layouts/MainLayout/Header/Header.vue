@@ -103,6 +103,7 @@ const isDarkTheme = useDarkTheme(isCarsVisible)
 .actions {
   .btn-appointment {
     font-size: 1.4rem;
+    height: unset;
     padding: 0.6rem 1.6rem;
     margin-right: 3.2rem;
   }

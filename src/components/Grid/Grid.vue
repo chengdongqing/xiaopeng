@@ -1,6 +1,7 @@
 <script setup lang="ts">
 defineProps<{
-  columns: number
+  columns: number | string
+  itemWidth?: string
   gap?: string
 }>()
 </script>
@@ -9,7 +10,8 @@ defineProps<{
   <div
     :style="{
       display: 'grid',
-      gridTemplateColumns: `repeat(${columns}, 1fr)`,
+      justifyContent: 'center',
+      gridTemplateColumns: `repeat(${columns}, ${itemWidth || '1fr'})`,
       gap
     }"
   >
