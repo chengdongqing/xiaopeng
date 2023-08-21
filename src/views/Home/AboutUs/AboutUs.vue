@@ -1,30 +1,21 @@
 <script setup lang="ts">
 import Button from '@/components/Button/Button.vue'
 import PlayIcon from '@/components/Icons/Play.vue'
-import TitleBar from '@/components/TitleBar/TitleBar.vue'
+import useElementScale from '@/hooks/useElementScale.ts'
 import { ref } from 'vue'
+import useVideoPlay from './useVideoPlay.ts'
 
-const videoRef = ref<HTMLVideoElement>()
+const containerRef = ref()
+const scale = useElementScale(containerRef)
 
-function onFullscreenChange() {
-  if (!document.fullscreenElement) {
-    videoRef.value?.pause()
-    document.removeEventListener('fullscreenchange', onFullscreenChange)
-  }
-}
-
-function handleVideoPlay() {
-  const video = videoRef.value as HTMLVideoElement
-  video.currentTime = 0
-  video.play()
-  video.requestFullscreen()
-  document.addEventListener('fullscreenchange', onFullscreenChange)
-}
+const videoRef = ref()
+const playVideo = useVideoPlay(videoRef)
 </script>
 
 <template>
-  <div class="container">
+  <div class="container" ref="containerRef">
     <video
+      :style="{ width: `${scale}%`, height: `${scale}%` }"
       src="https://s.xiaopeng.com/xp-fe/mainsite/2023/home/explore.mp4"
       class="video"
       autoplay
@@ -32,32 +23,57 @@ function handleVideoPlay() {
       loop
     />
 
-    <TitleBar
-      title="未来出行探索者"
-      subtitle="用科技为人类创造更便捷愉悦的出行生活"
-      color="#fff"
-      class="content"
-    >
+    <div class="content">
+      <div
+        class="title"
+        :style="{
+          transform: `translate3d(0, ${100 - scale}px, 0)`
+        }"
+      >
+        未来出行探索者
+      </div>
+      <div
+        class="subtitle"
+        :style="{
+          transform: `translate3d(0, ${100 - scale}px, 0)`
+        }"
+      >
+        用科技为人类创造更便捷愉悦的出行生活
+      </div>
       <RouterLink to="/about">
-        <Button color="#fff" arrow arrow-color="#fff" class="about">
+        <Button
+          color="#fff"
+          arrow
+          arrow-color="#fff"
+          class="about"
+          :style="{
+            transform: `translate3d(0, ${100 - scale}px, 0)`
+          }"
+        >
           关于小鹏
         </Button>
       </RouterLink>
-    </TitleBar>
+    </div>
 
-    <PlayIcon class="icon-play" @click="handleVideoPlay" />
+    <PlayIcon class="icon-play" @click="playVideo" />
     <video
       src="https://s.xiaopeng.com/xp-fe/mainsite/2023/home/explore-full.mp4"
-      style="width: 0; height: 0"
+      style="height: 0"
       ref="videoRef"
     />
   </div>
 </template>
 
 <style scoped>
-.video {
+.container {
   width: 100vw;
   height: 100vh;
+  text-align: center;
+}
+
+.video {
+  width: 100%;
+  height: 100%;
   object-fit: cover;
 }
 
@@ -66,6 +82,26 @@ function handleVideoPlay() {
   top: 0;
   left: 0;
   right: 0;
+  padding-top: 12rem;
+  padding-bottom: 6.4rem;
+  text-align: center;
+
+  .title {
+    margin-bottom: 1.6rem;
+    font-family: HYYakuHei, serif;
+    font-weight: 300;
+    font-size: 3.2rem;
+    letter-spacing: 0.4rem;
+    color: #fff;
+  }
+
+  .subtitle {
+    font-size: 1.6rem;
+    font-weight: 400;
+    letter-spacing: 0.2rem;
+    color: #fff;
+    line-height: 1.75;
+  }
 
   .about {
     margin-top: 3.2rem;

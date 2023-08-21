@@ -1,14 +1,8 @@
 <script setup lang="ts">
-withDefaults(
-  defineProps<{
-    title: string
-    subtitle: string
-    color?: string
-  }>(),
-  {
-    color: 'rgba(0, 0, 0, 0.6'
-  }
-)
+defineProps<{
+  title: string
+  subtitle: string
+}>()
 </script>
 
 <template>
@@ -31,14 +25,13 @@ withDefaults(
     font-weight: 300;
     font-size: 3.2rem;
     letter-spacing: 1.6rem;
-    color: v-bind(color);
   }
 
   .subtitle {
     font-size: 1.6rem;
     font-weight: 400;
     letter-spacing: 0.2rem;
-    color: v-bind(color);
+    color: rgba(0, 0, 0, 0.6);
     line-height: 1.75;
   }
 }
