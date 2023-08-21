@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import Button from '@/components/Button/Button.vue'
 import Logo from '@/components/Icons/Logo.vue'
 import { menus, subMenus } from '../const.ts'
 import CarAnimationIcon from './CarAnimationIcon.vue'
@@ -50,8 +51,8 @@ const isDarkTheme = useDarkTheme(isCarsVisible)
     </div>
 
     <div class="actions">
-      <RouterLink to="/appointment" target="_blank" class="btn btn-appointment">
-        预约试驾
+      <RouterLink to="/appointment" target="_blank">
+        <Button class="btn btn-appointment" color="#fff">预约试驾</Button>
       </RouterLink>
       <RouterLink to="/login" class="btn btn-login">登录</RouterLink>
     </div>
@@ -101,37 +102,9 @@ const isDarkTheme = useDarkTheme(isCarsVisible)
 
 .actions {
   .btn-appointment {
-    display: inline-block;
-    color: #fff;
     font-size: 1.4rem;
-    line-height: 1;
-    padding: 0.8rem 1.6rem;
-    border: 1px solid #fff;
-    border-radius: 0.4rem;
+    padding: 0.6rem 1.6rem;
     margin-right: 3.2rem;
-
-    &::after {
-      z-index: -1;
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      background-color: var(--primary-color);
-      width: 0;
-      border-radius: 0.4rem;
-      transition: width 0.3s;
-    }
-
-    &:hover {
-      color: #fff;
-      border-color: transparent;
-
-      &::after {
-        width: 100%;
-      }
-    }
   }
 
   .btn-login {
@@ -185,7 +158,7 @@ const isDarkTheme = useDarkTheme(isCarsVisible)
       height: 0.2rem;
       margin-bottom: 0.1rem;
       transition: max-width 0.1s ease-in-out;
-      background-color: var(--primary-color);
+      background-color: var(--color-primary);
     }
   }
 }

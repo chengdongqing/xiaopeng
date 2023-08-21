@@ -1,9 +1,11 @@
 <script setup>
 import CarBanners from './CarBanners/CarBanners.vue'
-import RotateCars from './RotateCars/RotateCars.vue'
+import ChargingService from './ChargingService/ChargingService.vue'
+import RotatingCars from './RotatingCars/RotatingCars.vue'
 </script>
 
 <template>
   <CarBanners />
-  <RotateCars />
+  <RotatingCars />
+  <ChargingService />
 </template>

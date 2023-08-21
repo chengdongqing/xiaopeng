@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import Button from '@/components/Button/Button.vue'
-import ArrowRight from '@/components/Icons/ArrowRight.vue'
 import X from '@/components/Icons/X.vue'
 </script>
 
@@ -22,14 +21,10 @@ import X from '@/components/Icons/X.vue'
           成熟登场
         </div>
         <div class="btn-group">
-          <Button class="btn">
+          <Button class="btn" color="#fff" arrow arrow-color="#fff">
             了解G6
-            <ArrowRight class="icon" />
           </Button>
-          <Button class="btn right">
-            预约试驾
-            <ArrowRight class="icon" />
-          </Button>
+          <Button class="btn right" color="#fff" arrow> 预约试驾 </Button>
         </div>
       </div>
     </div>
@@ -87,7 +82,7 @@ import X from '@/components/Icons/X.vue'
       color: #000;
 
       .icon {
-        color: var(--primary-color);
+        color: var(--color-primary);
       }
 
       &:hover .icon {

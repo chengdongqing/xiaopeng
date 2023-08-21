@@ -1,5 +1,6 @@
 :root {
-    --primary-color: #a4ce4c;
+    --color-primary: #a4ce4c;
+    --color-background: #f9f9f9;
 }
 
 @font-face {
