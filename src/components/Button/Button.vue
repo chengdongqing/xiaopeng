@@ -1,11 +1,14 @@
-<script setup>
+<script setup lang="ts">
 defineProps({
-  color: String
+  color: {
+    type: String,
+    default: '#fff'
+  }
 })
 </script>
 
 <template>
-  <button class="btn" :style="{ color, borderColor: color }">
+  <button class="btn">
     <slot />
   </button>
 </template>
@@ -18,10 +21,10 @@ defineProps({
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  color: #fff;
+  color: v-bind(color);
   font-size: 1.6rem;
   letter-spacing: 0.16rem;
-  border: 1px solid #fff;
+  border: 0.1rem solid v-bind(color);
   border-radius: 0.4rem;
   background-color: transparent;
   cursor: pointer;
@@ -30,7 +33,10 @@ defineProps({
     z-index: -1;
     content: '';
     position: absolute;
-    inset: 0;
+    top: 0;
+    right: 0;
+    left: 0;
+    bottom: 0;
     background-color: var(--primary-color);
     width: 0;
     border-radius: 0.4rem;

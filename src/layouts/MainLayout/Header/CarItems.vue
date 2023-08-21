@@ -39,9 +39,8 @@ defineProps<{
   }
 
   .wrapper {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(24rem, 1fr));
     width: min(77vw, 146.4rem);
     margin: 6.1rem auto 2.1rem;
 

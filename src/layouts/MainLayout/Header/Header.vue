@@ -1,25 +1,13 @@
 <script setup lang="ts">
 import Logo from '@/components/Icons/Logo.vue'
-import { computed, ref } from 'vue'
 import { menus, subMenus } from '../const.ts'
 import CarAnimationIcon from './CarAnimationIcon.vue'
 import CarItems from './CarItems.vue'
+import useCarVisible from './useCarVisible.ts'
+import useDarkTheme from './useDarkTheme.ts'
 
-const isDark = ref(false)
-const isCarsVisible = ref(false)
-const isDarkTheme = computed(() => isDark.value || isCarsVisible.value)
-
-const timer = ref<NodeJS.Timer>()
-function handleVisibleChange(visible = true) {
-  if (visible) {
-    clearTimeout(timer.value)
-    isCarsVisible.value = true
-  } else {
-    timer.value = setTimeout(() => {
-      isCarsVisible.value = false
-    }, 100)
-  }
-}
+const [isCarsVisible, onVisibleChange] = useCarVisible()
+const isDarkTheme = useDarkTheme(isCarsVisible)
 </script>
 
 <template>
@@ -34,8 +22,8 @@ function handleVisibleChange(visible = true) {
     <div class="menus">
       <div
         class="menu-item-wrapper"
-        @mouseenter="handleVisibleChange"
-        @mouseleave="handleVisibleChange(false)"
+        @mouseenter="onVisibleChange"
+        @mouseleave="onVisibleChange(false)"
       >
         <CarAnimationIcon :moved="isCarsVisible" />
         <a class="menu-item">车型</a>
@@ -71,8 +59,8 @@ function handleVisibleChange(visible = true) {
 
   <CarItems
     :visible="isCarsVisible"
-    @mouseenter="handleVisibleChange"
-    @mouseleave="handleVisibleChange(false)"
+    @mouseenter="onVisibleChange"
+    @mouseleave="onVisibleChange(false)"
   />
 </template>
 

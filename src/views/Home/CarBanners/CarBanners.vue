@@ -23,7 +23,7 @@ import X from '@/components/Icons/X.vue'
         </div>
         <div class="btn-group">
           <Button class="btn">
-            了解G9
+            了解G6
             <ArrowRight class="icon" />
           </Button>
           <Button class="btn right">
