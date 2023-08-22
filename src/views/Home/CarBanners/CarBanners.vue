@@ -4,6 +4,7 @@ import Grid from '@/components/Grid/Grid.vue'
 import XIcon from '@/components/Icons/X.vue'
 import * as Swiper from '@/components/Swiper'
 import { ref } from 'vue'
+import cars from './cars.ts'
 
 const current = ref(0)
 const swiperRef = ref()
@@ -14,80 +15,22 @@ const swiperRef = ref()
     <Swiper.Container
       ref="swiperRef"
       :interval="8000"
-      v-model:current="current"
+      :pause-on-hover="false"
+      @change="(index) => (current = index)"
       style="height: 100vh"
     >
-      <Swiper.Item>
+      <Swiper.Item v-for="item in cars" :key="item.name">
         <div style="height: 100%">
-          <video
-            src="https://xps02.xiaopeng.com/cms/material/video/2023/06-29/video_20230629100416_00416.mp4"
-            class="video"
-            autoplay
-            muted
-            loop
-          />
+          <video :src="item.videoUrl" class="video" autoplay muted loop />
           <div class="content-wrapper">
             <XIcon class="x" />
-            <div class="title">
-              小鹏<span class="en">G6 </span>
-              <span>超智驾轿跑<span class="en">SUV</span></span>
-              <br />
-              成熟登场
-            </div>
+            <div class="title" v-html="item.title" />
             <div class="btn-group">
-              <Button class="btn" color="#fff" arrow arrow-color="#fff">
-                了解G6
-              </Button>
-              <Button class="btn right" color="#fff" arrow>预约试驾</Button>
-            </div>
-          </div>
-        </div>
-      </Swiper.Item>
-      <Swiper.Item>
-        <div style="height: 100%">
-          <video
-            src="https://xps02.xiaopeng.com/cms/material/video/2023/04-07/video_20230407174751_66984.mp4"
-            class="video"
-            autoplay
-            muted
-            loop
-          />
-          <div class="content-wrapper">
-            <XIcon class="x" />
-            <div class="title">
-              全新<span class="en">P7i</span>
-              <br />
-              超智能轿跑
-            </div>
-            <div class="btn-group">
-              <Button class="btn" color="#fff" arrow arrow-color="#fff">
-                了解P7i
-              </Button>
-              <Button class="btn right" color="#fff" arrow>预约试驾</Button>
-            </div>
-          </div>
-        </div>
-      </Swiper.Item>
-      <Swiper.Item>
-        <div style="height: 100%">
-          <video
-            src="https://xps02.xiaopeng.com/cms/material/video/2023/01-06/video_20230106135720_85074.mp4"
-            class="video"
-            autoplay
-            muted
-            loop
-          />
-          <div class="content-wrapper">
-            <XIcon class="x" />
-            <div class="title">
-              小鹏<span class="en">G9</span>
-              <br />
-              超快充全智能<span class="en">SUV</span>
-            </div>
-            <div class="btn-group">
-              <Button class="btn" color="#fff" arrow arrow-color="#fff">
-                了解G9
-              </Button>
+              <RouterLink :to="`/${item.name.toLowerCase()}`">
+                <Button class="btn" color="#fff" arrow arrow-color="#fff">
+                  了解{{ item.name }}
+                </Button>
+              </RouterLink>
               <Button class="btn right" color="#fff" arrow>预约试驾</Button>
             </div>
           </div>
@@ -98,11 +41,11 @@ const swiperRef = ref()
     <Grid columns="4" gap="0.4rem" class="dots">
       <div
         class="dot-item"
-        v-for="(_, index) in 3"
-        :key="index"
+        :key="item.name"
+        v-for="(item, index) in cars"
         @click="swiperRef.goTo(index)"
       >
-        <div :class="['line', { active: index === current }]" />
+        <div class="line" :class="{ active: index === current }" />
       </div>
     </Grid>
   </div>
@@ -160,13 +103,12 @@ const swiperRef = ref()
   .title {
     color: #fff;
     font-family: HYYakuHei, serif;
-    font-weight: 300;
     font-size: 3.2rem;
     letter-spacing: 0.6rem;
     margin-bottom: 1.6rem;
     line-height: 1.5;
 
-    .en {
+    &:deep(.en) {
       font-family: BasisGrotesque-Regular, serif;
     }
   }
@@ -180,18 +122,6 @@ const swiperRef = ref()
     &.right {
       background-color: #fff;
       color: #000;
-
-      .icon {
-        color: var(--color-primary);
-      }
-
-      &:hover .icon {
-        color: #fff;
-      }
-    }
-
-    .icon {
-      margin-left: 0.4rem;
     }
   }
 }

@@ -4,11 +4,11 @@ import { useIndexSwitch, useSwiperPlay } from './helpers.ts'
 import { animationMap, SwiperInjectionKey, SwiperProps } from './index.ts'
 
 const props = withDefaults(defineProps<SwiperProps>(), {
-  current: 0,
   autoplay: true,
   interval: 3000,
   animation: 'slideX',
-  duration: 300
+  duration: 300,
+  pauseOnHover: true
 })
 
 const count = ref(0)
@@ -31,16 +31,11 @@ provide(SwiperInjectionKey, {
 
 const emit = defineEmits<{
   change: [index: number]
-  'update:current': [index: number]
 }>()
 
-watch(
-  () => {
-    emit('change', current.value)
-    emit('update:current', current.value)
-  },
-  () => current
-)
+watch(current, (value) => {
+  emit('change', value)
+})
 
 const { toNext, toPrev, goTo } = useIndexSwitch(
   {
@@ -60,7 +55,11 @@ defineExpose({
 </script>
 
 <template>
-  <div class="swiper" @mouseenter="pausePlay" @mouseleave="startPlay">
+  <div
+    class="swiper"
+    @mouseenter="pauseOnHover && pausePlay()"
+    @mouseleave="pauseOnHover && startPlay()"
+  >
     <slot />
   </div>
 </template>

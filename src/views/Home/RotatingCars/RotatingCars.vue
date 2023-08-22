@@ -1,53 +1,13 @@
 <script setup lang="ts">
 import Button from '@/components/Button/Button.vue'
-import { computed, reactive, ref } from 'vue'
+import * as Swiper from '@/components/Swiper'
+import { computed, ref } from 'vue'
+import CarItem from './CarItem.vue'
 import cars from './cars.ts'
 
 const current = ref(0)
+const swiperRef = ref()
 const car = computed(() => cars[current.value])
-
-function handleCarChange(index: number) {
-  current.value = index
-  rotate.offset = 0
-}
-
-const containerRef = ref<HTMLDivElement>()
-const { mouse, rotate } = reactive({
-  mouse: {
-    visible: false,
-    position: [0, 0]
-  },
-  rotate: {
-    prevX: 0,
-    offset: 0
-  }
-})
-
-function handleMouseMove(e: MouseEvent) {
-  const rect = containerRef.value!!.getBoundingClientRect()
-  const [x, y] = [e.clientX - rect.left, e.clientY - rect.top]
-
-  if (x > 0 && y > 0 && x < rect.width && y < rect.height) {
-    if (rotate.prevX > 0 && Math.abs(e.pageX - rotate.prevX) >= 5) {
-      rotate.offset += e.pageX > rotate.prevX ? 100 : -100
-      rotate.prevX = e.pageX
-    }
-    mouse.position = [x, y]
-    if (!mouse.visible) {
-      mouse.visible = true
-    }
-  } else {
-    mouse.visible = false
-  }
-}
-
-function handleMouseEnter() {
-  window.addEventListener('mousemove', handleMouseMove)
-}
-
-function handleMouseLeave() {
-  window.removeEventListener('mousemove', handleMouseMove)
-}
 </script>
 
 <template>
@@ -58,42 +18,31 @@ function handleMouseLeave() {
         v-for="(item, index) in cars"
         :class="{ active: current === index }"
         :key="item.name"
-        @click="handleCarChange(index)"
+        @click="swiperRef.goTo(index)"
       >
         {{ item.name }}
       </div>
     </div>
 
-    <div
-      class="main"
-      ref="containerRef"
-      @mouseenter="handleMouseEnter"
-      @mouseleave="handleMouseLeave"
-      @mousedown="rotate.prevX = $event.pageX"
-      @mouseup="rotate.prevX = 0"
-    >
-      <img
-        :src="`https://s.xiaopeng.com/xp-fe/mainsite/2023/home/rotate/${car.name}.svg`"
-        class="car-icon"
-        draggable="false"
-        alt=""
-      />
-      <div
-        class="car-picture"
-        :style="{
-          background: `url(${car.spriteUrl}) ${rotate.offset}% 0% / 3600% 100%`
-          // 参数说明：url offsetX offsetY / scaleX scaleY
-        }"
-      />
-      <img
-        alt=""
-        draggable="false"
-        src="https://xps01.xiaopeng.com/www/public/img/mouse.73b63bed.svg"
-        :class="['mouse-icon', { active: mouse.visible }]"
-        :style="{
-          transform: `translate3d(calc(-50% + ${mouse.position[0]}px), calc(-50% + ${mouse.position[1]}px), 0)`
-        }"
-      />
+    <div>
+      <Swiper.Container
+        ref="swiperRef"
+        style="height: 56rem"
+        :autoplay="false"
+        :duration="200"
+        @change="(index) => (current = index)"
+      >
+        <Swiper.Item v-for="item in cars" :key="item.name">
+          <CarItem
+            :name="item.name"
+            :sprite-url="item.spriteUrl"
+            :current="current"
+          />
+        </Swiper.Item>
+      </Swiper.Container>
+
+      <div class="swiper-btn left" @click="swiperRef.toPrev" />
+      <div class="swiper-btn right" @click="swiperRef.toNext" />
     </div>
 
     <div class="content-wrapper">
@@ -121,6 +70,7 @@ function handleMouseLeave() {
     font-size: 2.4rem;
     padding-left: 4.5rem;
     padding-right: 4.5rem;
+    transition: 0.3s;
     cursor: pointer;
     opacity: 0.2;
 
@@ -131,43 +81,39 @@ function handleMouseLeave() {
   }
 }
 
-.main {
-  width: 120rem;
-  margin: auto;
+.swiper-btn {
+  position: absolute;
+  top: 50%;
+  width: 8rem;
+  height: 8rem;
+  z-index: 2;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0.6;
+  transition: 0.3s;
 
-  .car-icon {
-    height: 28rem;
-    position: absolute;
-    left: 8rem;
-    top: 2rem;
-    z-index: -1;
+  &.left {
+    left: 5%;
+    transform: translateY(-50%);
   }
 
-  .car-picture {
-    width: 120rem;
-    height: 56rem;
+  &.right {
+    right: 5%;
+    transform: translateY(-50%) rotate(180deg);
   }
 
-  .mouse-icon {
-    width: 0;
-    height: 7.2rem;
-    opacity: 0;
-    position: absolute;
-    left: 0;
-    top: 0;
-    z-index: 1;
-    transition:
-      width 0.3s,
-      opacity 0.3s;
+  &::after {
+    content: '';
+    background: url(data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjIiIGhlaWdodD0iMzYiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHBhdGggZmlsbC1ydWxlPSJldmVub2RkIiBjbGlwLXJ1bGU9ImV2ZW5vZGQiIGQ9Ik0yMiAwTDQuNCAxOCAyMiAzNmgtNC40TDAgMTggMTcuNiAwSDIyeiIgZmlsbD0iIzY2NiIvPjwvc3ZnPg==);
+    background-size: contain;
+    width: 2rem;
+    height: 3.2rem;
+  }
 
-    &.active {
-      width: 7.2rem;
-      opacity: 0.8;
-    }
-
-    &:hover {
-      cursor: none;
-    }
+  &:hover {
+    opacity: 1;
   }
 }
 

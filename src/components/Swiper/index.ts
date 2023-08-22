@@ -3,12 +3,12 @@ import Container from './Swiper.vue'
 import Item from './SwiperItem.vue'
 
 export interface SwiperProps {
-  current?: number
   autoplay?: boolean
   interval?: number
   animation?: AnimationTypes
   duration?: number
   card?: boolean
+  pauseOnHover?: boolean
 }
 
 export interface SwiperInjectionProps {
