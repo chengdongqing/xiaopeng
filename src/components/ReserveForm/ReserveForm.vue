@@ -4,7 +4,11 @@ import TitleBar from '@/components/TitleBar/TitleBar.vue'
 import { ref } from 'vue'
 import cars from './cars.ts'
 
-const current = ref(0)
+const props = defineProps<{
+  value?: number
+}>()
+
+const current = ref(props.value || 0)
 </script>
 
 <template>
@@ -26,8 +30,9 @@ const current = ref(0)
         />
       </div>
 
-      <form class="form" @submit.prevent="console.log($event)">
+      <form class="form" @submit.prevent="">
         <select
+          v-if="!value"
           class="form-item select"
           name="model"
           :value="current"
@@ -165,7 +170,7 @@ const current = ref(0)
         border: 0.1rem solid #666;
         border-radius: 50%;
         margin-right: 0.8rem;
-        -webkit-appearance: none;
+        appearance: none;
 
         &:checked {
           border: none;

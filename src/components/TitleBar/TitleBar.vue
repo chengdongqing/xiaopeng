@@ -23,7 +23,6 @@ defineProps<{
   .title {
     margin-bottom: 1.6rem;
     font-family: HYYakuHei, serif;
-    font-weight: 300;
     font-size: 3.2rem;
     letter-spacing: 1rem;
     display: inline-block;
@@ -32,7 +31,6 @@ defineProps<{
 
   .subtitle {
     font-size: 1.6rem;
-    font-weight: 400;
     letter-spacing: 0.2rem;
     color: rgba(0, 0, 0, 0.6);
     line-height: 1.75;
