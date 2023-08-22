@@ -17,10 +17,12 @@ import TitleBar from '@/components/TitleBar/TitleBar.vue'
         subtitle="小鹏门店为您提供便捷、舒适的购车及售后体验"
         color="#fff"
       >
-        <a href="https://www.xiaopeng.com/pengmetta.html" target="_blank">
-          <Button color="#fff" arrow arrow-color="#fff" class="btn">
-            查看全国门店
-          </Button>
+        <a
+          class="btn-wrapper"
+          href="https://www.xiaopeng.com/pengmetta.html"
+          target="_blank"
+        >
+          <Button color="#fff" arrow arrow-color="#fff"> 查看全国门店</Button>
         </a>
       </TitleBar>
     </div>
@@ -44,7 +46,8 @@ import TitleBar from '@/components/TitleBar/TitleBar.vue'
   left: 50%;
   transform: translateX(-50%);
 
-  .btn {
+  .btn-wrapper {
+    display: inline-block;
     margin-top: 3.2rem;
   }
 }

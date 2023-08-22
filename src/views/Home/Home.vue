@@ -1,4 +1,5 @@
 <script setup>
+import ReserveForm from '@/components/ReserveForm/ReserveForm.vue'
 import AboutUs from './AboutUs/AboutUs.vue'
 import AfterSale from './AfterSale/AfterSale.vue'
 import CarBanners from './CarBanners/CarBanners.vue'
@@ -16,4 +17,5 @@ import Store from './Store/Store.vue'
   <AboutUs />
   <NewsCenter />
   <Store />
+  <ReserveForm />
 </template>

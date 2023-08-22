@@ -25,7 +25,9 @@ defineProps<{
     font-family: HYYakuHei, serif;
     font-weight: 300;
     font-size: 3.2rem;
-    letter-spacing: 1.6rem;
+    letter-spacing: 1rem;
+    display: inline-block;
+    margin-right: -1rem;
   }
 
   .subtitle {
