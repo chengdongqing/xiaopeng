@@ -2,7 +2,7 @@
 import Button from '@/components/Button/Button.vue'
 import * as Swiper from '@/components/Swiper'
 import { computed, ref } from 'vue'
-import CarItem from './CarItem.vue'
+import Car from './Car.vue'
 import cars from './cars.ts'
 
 const current = ref(0)
@@ -33,7 +33,7 @@ const car = computed(() => cars[current.value])
         @change="(index) => (current = index)"
       >
         <Swiper.Item v-for="item in cars" :key="item.name">
-          <CarItem
+          <Car
             :name="item.name"
             :sprite-url="item.spriteUrl"
             :current="current"

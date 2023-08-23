@@ -1,23 +1,23 @@
 <script setup>
 import ReserveForm from '@/components/ReserveForm/ReserveForm.vue'
-import AboutUs from './AboutUs/AboutUs.vue'
-import AfterSale from './AfterSale/AfterSale.vue'
-import AppDownload from './AppDownload/AppDownload.vue'
-import CarBanners from './CarBanners/CarBanners.vue'
-import ChargingService from './ChargingService/ChargingService.vue'
-import NewsCenter from './NewsCenter/NewsCenter.vue'
-import RotatingCars from './RotatingCars/RotatingCars.vue'
-import Store from './Store/Store.vue'
+import Section3dCars from './Section3dCars/Section3dCars.vue'
+import SectionAboutUs from './SectionAboutUs/SectionAboutUs.vue'
+import SectionAfterSale from './SectionAfterSale/SectionAfterSale.vue'
+import SectionAppDownload from './SectionAppDownload/SectionAppDownload.vue'
+import SectionBanner from './SectionBanner/SectionBanner.vue'
+import SectionCharging from './SectionCharging/SectionCharging.vue'
+import SectionNews from './SectionNews/SectionNews.vue'
+import SectionStore from './SectionStore/SectionStore.vue'
 </script>
 
 <template>
-  <CarBanners />
-  <RotatingCars />
-  <ChargingService />
-  <AfterSale />
-  <AboutUs />
-  <NewsCenter />
-  <Store />
+  <SectionBanner />
+  <Section3dCars />
+  <SectionCharging />
+  <SectionAfterSale />
+  <SectionAboutUs />
+  <SectionNews />
+  <SectionStore />
   <ReserveForm />
-  <AppDownload />
+  <SectionAppDownload />
 </template>
