@@ -141,6 +141,11 @@ import { footerLinks } from './const.ts'
         height: 3.2rem;
         transition: 0.1s ease-in-out;
 
+        :is(img) {
+          width: 3.2rem;
+          height: 3.2rem;
+        }
+
         &:hover {
           opacity: 0.6;
         }

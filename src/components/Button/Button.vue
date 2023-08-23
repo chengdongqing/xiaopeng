@@ -20,7 +20,7 @@ defineProps({
 <template>
   <button class="btn">
     <slot />
-    <ArrowRight v-if="arrow" :style="{ color: arrowColor }" class="icon" />
+    <ArrowRight v-if="arrow" :style="[{ color: arrowColor }]" class="icon" />
   </button>
 </template>
 
@@ -65,6 +65,11 @@ defineProps({
     .icon {
       color: #fff !important;
     }
+  }
+
+  .icon {
+    width: 1.6rem;
+    height: 1.6rem;
   }
 }
 </style>

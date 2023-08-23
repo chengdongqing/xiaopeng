@@ -113,6 +113,7 @@ const playVideo = useVideoPlay(videoRef)
   left: 50%;
   transform: translate(-50%, -50%);
   width: 6.4rem;
+  height: 6.4rem;
   cursor: pointer;
 }
 </style>

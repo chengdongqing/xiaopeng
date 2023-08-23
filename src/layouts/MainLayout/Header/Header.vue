@@ -17,7 +17,10 @@ const isDarkTheme = useDarkTheme(isCarsVisible)
     :class="{ 'dark-theme': isDarkTheme, 'cars-visible': isCarsVisible }"
   >
     <RouterLink to="/">
-      <Logo :fill="isDarkTheme ? '#000' : '#fff'" />
+      <Logo
+        :fill="isDarkTheme ? '#000' : '#fff'"
+        style="width: 3.5rem; height: 1.8rem"
+      />
     </RouterLink>
 
     <div class="menus">
@@ -26,7 +29,7 @@ const isDarkTheme = useDarkTheme(isCarsVisible)
         @mouseenter="onVisibleChange"
         @mouseleave="onVisibleChange(false)"
       >
-        <CarAnimationIcon :moved="isCarsVisible" />
+        <CarAnimationIcon :active="isCarsVisible" />
         <a class="menu-item">车型</a>
       </div>
       <div class="menu-item-wrapper" v-for="item in menus" :key="item.name">
@@ -121,6 +124,7 @@ const isDarkTheme = useDarkTheme(isCarsVisible)
 .menus {
   display: flex;
   align-items: center;
+  padding-left: 12rem;
 
   .menu-item-wrapper {
     height: 5.6rem;

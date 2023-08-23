@@ -33,7 +33,7 @@
 }
 
 html {
-    font-size: 10px;
+    font-size: max(0.4vw, 10px);
 }
 
 img,
