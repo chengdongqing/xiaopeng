@@ -16,7 +16,7 @@ import services from './services.ts'
     <Grid columns="3" item-width="41.8rem" gap="3.2rem">
       <div class="service-item" v-for="item in services" :key="item.name">
         <ScalableImage :src="item.pictureUrl" />
-        <div class="content">
+        <div class="content-wrapper">
           <div class="name">{{ item.name }}</div>
           <div class="description">{{ item.description }}</div>
         </div>
@@ -42,12 +42,12 @@ import services from './services.ts'
   }
 
   &:hover {
-    .content .description {
+    .content-wrapper .description {
       display: unset;
     }
   }
 
-  .content {
+  .content-wrapper {
     position: absolute;
     left: 0;
     bottom: 2.2rem;

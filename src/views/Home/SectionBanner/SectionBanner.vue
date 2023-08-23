@@ -27,11 +27,11 @@ const swiperRef = ref()
             <div class="title" v-html="item.title" />
             <div class="btn-group">
               <RouterLink :to="`/${item.name.toLowerCase()}`">
-                <Button class="btn" color="#fff" arrow arrow-color="#fff">
+                <Button color="#fff" arrow arrow-color="#fff">
                   了解{{ item.name }}
                 </Button>
               </RouterLink>
-              <Button class="btn right" color="#fff" arrow>预约试驾</Button>
+              <Button class="btn-right" color="#fff" arrow>预约试驾</Button>
             </div>
           </div>
         </div>
@@ -105,7 +105,6 @@ const swiperRef = ref()
     font-family: HYYakuHei, serif;
     font-size: 3.2rem;
     letter-spacing: 0.6rem;
-    margin-bottom: 1.6rem;
     line-height: 1.5;
 
     &:deep(.en) {
@@ -115,14 +114,12 @@ const swiperRef = ref()
 }
 
 .btn-group {
-  .btn {
-    margin-top: 1.6rem;
-    margin-right: 2rem;
+  margin-top: 3.2rem;
 
-    &.right {
-      background-color: #fff;
-      color: #000;
-    }
+  .btn-right {
+    margin-left: 2rem;
+    background-color: #fff;
+    color: #000;
   }
 }
 </style>

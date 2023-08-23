@@ -1,15 +1,11 @@
 <script setup lang="ts">
 import Button from '@/components/Button/Button.vue'
-import PlayIcon from '@/components/Icons/Play.vue'
+import ButtonVideoPlayer from '@/components/ButtonVideoPlayer/ButtonVideoPlayer.vue'
 import useElementScale from '@/hooks/useElementScale.ts'
 import { ref } from 'vue'
-import useVideoPlay from './useVideoPlay.ts'
 
 const containerRef = ref()
 const scale = useElementScale(containerRef)
-
-const videoRef = ref()
-const playVideo = useVideoPlay(videoRef)
 </script>
 
 <template>
@@ -26,7 +22,7 @@ const playVideo = useVideoPlay(videoRef)
       loop
     />
 
-    <div class="content">
+    <div class="content-wrapper">
       <div
         class="title"
         :style="{
@@ -45,27 +41,22 @@ const playVideo = useVideoPlay(videoRef)
       >
         用科技为人类创造更便捷愉悦的出行生活
       </div>
-      <RouterLink to="/about">
-        <Button
-          color="#fff"
-          arrow
-          arrow-color="#fff"
-          class="about"
-          :style="{
-            transform: `translate3d(0, ${100 * 8 - scale * 8}px, 0)`,
-            opacity: scale === 100 ? 1 : scale / 100 - 0.6
-          }"
-        >
-          关于小鹏
-        </Button>
-      </RouterLink>
+      <Button
+        color="#fff"
+        arrow
+        arrow-color="#fff"
+        class="about"
+        :style="{
+          transform: `translate3d(0, ${100 * 8 - scale * 8}px, 0)`,
+          opacity: scale === 100 ? 1 : scale / 100 - 0.6
+        }"
+      >
+        关于小鹏
+      </Button>
     </div>
 
-    <PlayIcon class="icon-play" @click="playVideo" />
-    <video
-      src="https://s.xiaopeng.com/xp-fe/mainsite/2023/home/explore-full.mp4"
-      style="width: 0; height: 0"
-      ref="videoRef"
+    <ButtonVideoPlayer
+      video-url="https://s.xiaopeng.com/xp-fe/mainsite/2023/home/explore-full.mp4"
     />
   </div>
 </template>
@@ -76,7 +67,7 @@ const playVideo = useVideoPlay(videoRef)
   text-align: center;
 }
 
-.content {
+.content-wrapper {
   position: absolute;
   top: 0;
   left: 0;
@@ -105,15 +96,5 @@ const playVideo = useVideoPlay(videoRef)
   .about {
     margin-top: 3.2rem;
   }
-}
-
-.icon-play {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 6.4rem;
-  height: 6.4rem;
-  cursor: pointer;
 }
 </style>

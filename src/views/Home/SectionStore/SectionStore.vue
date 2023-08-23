@@ -11,7 +11,7 @@ import TitleBar from '@/components/TitleBar/TitleBar.vue'
       alt=""
     />
 
-    <div class="content">
+    <div class="content-wrapper">
       <TitleBar
         title="小鹏门店"
         subtitle="小鹏门店为您提供便捷、舒适的购车及售后体验"
@@ -40,7 +40,7 @@ import TitleBar from '@/components/TitleBar/TitleBar.vue'
   object-fit: cover;
 }
 
-.content {
+.content-wrapper {
   position: absolute;
   top: 0;
   left: 50%;

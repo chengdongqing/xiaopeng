@@ -54,10 +54,8 @@ const isDarkTheme = useDarkTheme(isCarsVisible)
     </div>
 
     <div class="actions">
-      <RouterLink to="/appointment" target="_blank">
-        <Button class="btn btn-appointment" color="#fff">预约试驾</Button>
-      </RouterLink>
-      <RouterLink to="/login" class="btn btn-login">登录</RouterLink>
+      <Button class="btn btn-appointment" color="#fff">预约试驾</Button>
+      <a class="btn btn-login">登录</a>
     </div>
   </div>
 

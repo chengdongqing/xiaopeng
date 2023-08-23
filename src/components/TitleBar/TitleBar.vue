@@ -7,7 +7,7 @@ defineProps<{
 </script>
 
 <template>
-  <div class="container">
+  <div class="title-bar">
     <div class="title" :style="{ color }">{{ title }}</div>
     <div class="subtitle" :style="{ color }">{{ subtitle }}</div>
     <slot />
@@ -15,7 +15,7 @@ defineProps<{
 </template>
 
 <style scoped>
-.container {
+.title-bar {
   padding-top: 12rem;
   padding-bottom: 6.4rem;
   text-align: center;
