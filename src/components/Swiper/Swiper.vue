@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import useElementSize from '@/hooks/useElementSize.ts'
 import { computed, provide, ref, watch } from 'vue'
 import { useIndexSwitch, useSwiperPlay } from './helpers.ts'
 import { SwiperInjectionKey, SwiperProps } from './index.ts'
@@ -17,13 +18,12 @@ const current = ref(0)
 const isNext = ref(true)
 const containerRef = ref()
 
+const size = useElementSize(containerRef)
+
 const offsetX = computed(() => {
   if (!containerRef.value) return 0
 
-  const width =
-    containerRef.value.getBoundingClientRect().width *
-    count.value *
-    (props.card ? props.cardScale : 1)
+  const width = size.width * count.value * (props.card ? props.cardScale : 1)
   const perWidth = width / count.value
   const offset = -(perWidth * current.value)
 
