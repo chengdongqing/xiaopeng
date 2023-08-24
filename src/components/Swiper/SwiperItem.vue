@@ -2,60 +2,38 @@
 import { inject } from 'vue'
 import { SwiperInjectionKey } from './index.ts'
 
-const {
-  current,
-  animation,
-  duration: _duration,
-  register
-} = inject(SwiperInjectionKey)
-
-const duration = `${_duration}ms`
+const { current, card, cardScale, register, goTo } = inject(SwiperInjectionKey)
 const index = register()
 </script>
 
 <template>
-  <Transition :name="animation">
-    <div v-show="current === index" class="swiper-item">
-      <slot />
-    </div>
-  </Transition>
+  <div
+    class="swiper-item"
+    :style="{ width: `${card ? cardScale * 100 : 100}%` }"
+    :class="{ card, active: index === current }"
+    @click="card && index !== current && goTo(index)"
+  >
+    <slot />
+  </div>
 </template>
 
 <style scoped>
 .swiper-item {
-  position: absolute;
-  inset: 0;
-}
+  flex-shrink: 0;
 
-[class*='-active'] {
-  transition: v-bind(duration) linear;
-}
+  &.card {
+    opacity: 0.4;
+    transform: scale(0.8);
+    border-radius: 0.4rem;
+    overflow: hidden;
+    cursor: pointer;
+    transition: 0.3s;
 
-/* 横向滚动 */
-.slide-right-leave-to,
-.slide-left-enter-from {
-  transform: translate3d(-100%, 0, 0);
-}
-
-.slide-right-enter-from,
-.slide-left-leave-to {
-  transform: translate3d(100%, 0, 0);
-}
-
-/* 纵向滚动 */
-.slide-up-enter-from,
-.slide-down-leave-to {
-  transform: translate3d(0, 100%, 0);
-}
-
-.slide-up-leave-to,
-.slide-down-enter-from {
-  transform: translate3d(0, -100%, 0);
-}
-
-/* 淡入浅出 */
-.fade-enter-from,
-.fade-leave-to {
-  opacity: 0.3;
+    &.active {
+      opacity: 1;
+      transform: scale(1);
+      cursor: default;
+    }
+  }
 }
 </style>

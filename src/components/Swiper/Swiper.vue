@@ -1,32 +1,33 @@
 <script setup lang="ts">
 import { computed, provide, ref, watch } from 'vue'
 import { useIndexSwitch, useSwiperPlay } from './helpers.ts'
-import { animationMap, SwiperInjectionKey, SwiperProps } from './index.ts'
+import { SwiperInjectionKey, SwiperProps } from './index.ts'
 
 const props = withDefaults(defineProps<SwiperProps>(), {
   autoplay: true,
   interval: 3000,
-  animation: 'slideX',
   duration: 300,
+  cardScale: 0.6,
   pauseOnHover: true
 })
+const duration = `${props.duration}ms`
 
 const count = ref(0)
 const current = ref(0)
 const isNext = ref(true)
+const containerRef = ref()
 
-const animation = computed(() => {
-  return animationMap[props.animation][isNext.value ? 0 : 1]
-})
+const offsetX = computed(() => {
+  if (!containerRef.value) return 0
 
-provide(SwiperInjectionKey, {
-  current: current,
-  animation,
-  duration: props.duration,
-  register() {
-    count.value += 1
-    return count.value - 1
-  }
+  const width =
+    containerRef.value.getBoundingClientRect().width *
+    count.value *
+    (props.card ? props.cardScale : 1)
+  const perWidth = width / count.value
+  const offset = -(perWidth * current.value)
+
+  return props.card ? offset + perWidth * 0.333 : offset
 })
 
 const emit = defineEmits<{
@@ -47,6 +48,19 @@ const { toNext, toPrev, goTo } = useIndexSwitch(
 )
 const { startPlay, pausePlay, resetPlay } = useSwiperPlay(props, toNext)
 
+provide(SwiperInjectionKey, {
+  current,
+  card: props.card,
+  cardScale: props.cardScale,
+  register() {
+    count.value += 1
+    return count.value - 1
+  },
+  goTo,
+  toPrev,
+  toNext
+})
+
 defineExpose({
   toNext,
   toPrev,
@@ -60,13 +74,24 @@ defineExpose({
     @mouseenter="pauseOnHover && pausePlay()"
     @mouseleave="pauseOnHover && startPlay()"
   >
-    <slot />
+    <div
+      ref="containerRef"
+      class="swiper-container"
+      :style="{ transform: `translate3d(${offsetX}px, 0, 0)` }"
+    >
+      <slot />
+    </div>
   </div>
 </template>
 
 <style scoped>
 .swiper {
-  display: flex;
   overflow: hidden;
+
+  .swiper-container {
+    height: 100%;
+    display: flex;
+    transition: v-bind(duration);
+  }
 }
 </style>

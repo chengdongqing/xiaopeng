@@ -40,15 +40,15 @@ const car = computed(() => cars[current.value])
           />
         </Swiper.Item>
       </Swiper.Container>
-
-      <div class="swiper-btn left" @click="swiperRef.toPrev" />
-      <div class="swiper-btn right" @click="swiperRef.toNext" />
+      <Swiper.ButtonGroup :swiper-ref="swiperRef" />
     </div>
 
     <div class="content-wrapper">
       <div class="description">{{ car.description }}</div>
       <div>
-        <Button class="btn" arrow>了解{{ car.name }}</Button>
+        <RouterLink :to="`/${car.name.toLowerCase()}`">
+          <Button class="btn" arrow>了解{{ car.name }}</Button>
+        </RouterLink>
         <Button class="btn right" arrow>立即订购</Button>
       </div>
     </div>
@@ -78,42 +78,6 @@ const car = computed(() => cars[current.value])
     &:hover {
       opacity: 1;
     }
-  }
-}
-
-.swiper-btn {
-  position: absolute;
-  top: 50%;
-  width: 8rem;
-  height: 8rem;
-  z-index: 2;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  opacity: 0.6;
-  transition: 0.3s;
-
-  &.left {
-    left: 5%;
-    transform: translateY(-50%);
-  }
-
-  &.right {
-    right: 5%;
-    transform: translateY(-50%) rotate(180deg);
-  }
-
-  &::after {
-    content: '';
-    background: url(data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjIiIGhlaWdodD0iMzYiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHBhdGggZmlsbC1ydWxlPSJldmVub2RkIiBjbGlwLXJ1bGU9ImV2ZW5vZGQiIGQ9Ik0yMiAwTDQuNCAxOCAyMiAzNmgtNC40TDAgMTggMTcuNiAwSDIyeiIgZmlsbD0iIzY2NiIvPjwvc3ZnPg==);
-    background-size: contain;
-    width: 2rem;
-    height: 3.2rem;
-  }
-
-  &:hover {
-    opacity: 1;
   }
 }
 

@@ -16,23 +16,21 @@ const swiperRef = ref()
       ref="swiperRef"
       :interval="8000"
       :pause-on-hover="false"
-      @change="(index) => (current = index)"
       style="height: 100vh"
+      @change="(index) => (current = index)"
     >
       <Swiper.Item v-for="item in cars" :key="item.name">
-        <div style="height: 100%">
-          <video :src="item.videoUrl" class="video" autoplay muted loop />
-          <div class="content-wrapper">
-            <XIcon class="x" />
-            <div class="title" v-html="item.title" />
-            <div class="btn-group">
-              <RouterLink :to="`/${item.name.toLowerCase()}`">
-                <Button color="#fff" arrow arrow-color="#fff">
-                  了解{{ item.name }}
-                </Button>
-              </RouterLink>
-              <Button class="btn-right" color="#fff" arrow>预约试驾</Button>
-            </div>
+        <video :src="item.videoUrl" class="video" autoplay muted loop />
+        <div class="content-wrapper">
+          <XIcon class="x" />
+          <div class="title" v-html="item.title" />
+          <div class="btn-group">
+            <RouterLink :to="`/${item.name.toLowerCase()}`">
+              <Button color="#fff" arrow arrow-color="#fff">
+                了解{{ item.name }}
+              </Button>
+            </RouterLink>
+            <Button class="btn-right" color="#fff" arrow>预约试驾</Button>
           </div>
         </div>
       </Swiper.Item>

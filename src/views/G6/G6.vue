@@ -3,6 +3,7 @@ import CarBanner from '@/components/CarBanner/CarBanner.vue'
 import HeaderBar from '@/components/HeaderBar/HeaderBar.vue'
 import ShrinkableBanner from '@/components/ShrinkableBanner/ShrinkableBanner.vue'
 import SectionDesignConsultant from './SectionDesignConsultant/SectionDesignConsultant.vue'
+import SectionFeatures from './SectionFeatures/SectionFeatures.vue'
 </script>
 
 <template>
@@ -19,6 +20,5 @@ import SectionDesignConsultant from './SectionDesignConsultant/SectionDesignCons
     background-url="https://s.xiaopeng.com/xp-fe/mainsite/2023/g6/v1_5/p3-1.jpg"
   />
   <SectionDesignConsultant />
+  <SectionFeatures />
 </template>
-
-<style scoped></style>

@@ -13,11 +13,6 @@
     src: url(https://dl.xiaopeng.com/xp-fe/mainsite/2023/fonts/BasisGrotesque-Regular.woff2) format("woff2")
 }
 
-@font-face {
-    font-family: FuturaBT-BoldItalic;
-    src: url(https://dl.xiaopeng.com/xp-fe/mainsite/2023/fonts/FuturaBT-BoldItalic.woff2) format("woff2")
-}
-
 *,
 *::before,
 *::after {
