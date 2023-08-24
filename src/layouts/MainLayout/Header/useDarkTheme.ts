@@ -9,7 +9,7 @@ export default function useDarkTheme(
 
   return computed(() => {
     return (
-      isChangeThemeOnScroll.value && (isScrolled.value || isCarsVisible.value)
+      isCarsVisible.value || (isChangeThemeOnScroll.value && isScrolled.value)
     )
   })
 }
