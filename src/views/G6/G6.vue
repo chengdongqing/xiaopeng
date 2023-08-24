@@ -2,6 +2,7 @@
 import CarBanner from '@/components/CarBanner/CarBanner.vue'
 import HeaderBar from '@/components/HeaderBar/HeaderBar.vue'
 import ShrinkableBanner from '@/components/ShrinkableBanner/ShrinkableBanner.vue'
+import SectionColorful from './SectionColorful/SectionColorful.vue'
 import SectionDesignConsultant from './SectionDesignConsultant/SectionDesignConsultant.vue'
 import SectionFeatures from './SectionFeatures/SectionFeatures.vue'
 </script>
@@ -21,4 +22,5 @@ import SectionFeatures from './SectionFeatures/SectionFeatures.vue'
   />
   <SectionDesignConsultant />
   <SectionFeatures />
+  <SectionColorful />
 </template>

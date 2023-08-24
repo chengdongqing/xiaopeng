@@ -92,11 +92,11 @@ const current = ref(props.value || 0)
   height: 51.3rem;
 
   .img {
-    width: 100%;
-    height: 100%;
     position: absolute;
     top: 0;
     right: -5rem;
+    width: 100%;
+    height: 100%;
     opacity: 0;
 
     &.active {
