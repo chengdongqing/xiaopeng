@@ -2,12 +2,7 @@
 import CarBanner from '@/components/CarBanner/CarBanner.vue'
 import HeaderBar from '@/components/HeaderBar/HeaderBar.vue'
 import ShrinkableBanner from '@/components/ShrinkableBanner/ShrinkableBanner.vue'
-import { MainLayoutInjectionKey } from '@/layouts/MainLayout'
-import { inject } from 'vue'
 import SectionDesignConsultant from './SectionDesignConsultant/SectionDesignConsultant.vue'
-
-const { setChangeThemeOnScroll } = inject(MainLayoutInjectionKey)
-setChangeThemeOnScroll(false)
 </script>
 
 <template>
