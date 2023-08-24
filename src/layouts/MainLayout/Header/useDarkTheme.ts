@@ -1,18 +1,15 @@
-import { computed, onMounted, onUnmounted, Ref, ref } from 'vue'
+import usePageScrolled from '@/hooks/usePageScrolled.ts'
+import { computed, Ref } from 'vue'
 
-export default function useDarkTheme(isCarsVisible: Ref<boolean>) {
-  const isScrolled = ref(false)
+export default function useDarkTheme(
+  isCarsVisible: Ref<boolean>,
+  isChangeThemeOnScroll: Ref<boolean>
+) {
+  const isScrolled = usePageScrolled()
 
-  function handleScroll() {
-    isScrolled.value = window.scrollY > 0
-  }
-
-  onMounted(() => {
-    window.addEventListener('scroll', handleScroll)
+  return computed(() => {
+    return (
+      isChangeThemeOnScroll.value && (isScrolled.value || isCarsVisible.value)
+    )
   })
-  onUnmounted(() => {
-    window.removeEventListener('scroll', handleScroll)
-  })
-
-  return computed(() => isScrolled.value || isCarsVisible.value)
 }

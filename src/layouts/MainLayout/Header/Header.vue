@@ -1,14 +1,17 @@
 <script setup lang="ts">
 import Button from '@/components/Button/Button.vue'
 import Logo from '@/components/Icons/Logo.vue'
+import { MainLayoutInjectionKey } from '@/layouts/MainLayout'
+import { inject } from 'vue'
 import { menus, subMenus } from '../const.ts'
 import CarAnimationIcon from './CarAnimationIcon.vue'
 import CarItems from './CarItems.vue'
 import useCarVisible from './useCarVisible.ts'
 import useDarkTheme from './useDarkTheme.ts'
 
+const { isChangeThemeOnScroll } = inject(MainLayoutInjectionKey)
 const [isCarsVisible, onVisibleChange] = useCarVisible()
-const isDarkTheme = useDarkTheme(isCarsVisible)
+const isDarkTheme = useDarkTheme(isCarsVisible, isChangeThemeOnScroll)
 </script>
 
 <template>
