@@ -9,7 +9,6 @@ export default function useElementSize(element: Ref<HTMLElement>) {
   function getSize() {
     if (!element.value) return
 
-    console.log(element.value.getBoundingClientRect())
     const { width, height } = element.value.getBoundingClientRect()
     size.width = width
     size.height = height

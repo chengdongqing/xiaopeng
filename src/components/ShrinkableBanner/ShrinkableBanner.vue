@@ -6,7 +6,7 @@ import { ref } from 'vue'
 defineProps<{
   title: string
   subtitle: string
-  backgroundUrl: string
+  src: string
   videoUrl?: string
 }>()
 
@@ -23,8 +23,8 @@ const scale = useElementScale(containerRef)
         height: `${scale}%`
       }"
     >
-      <video v-if="videoUrl" :src="backgroundUrl" autoplay muted loop />
-      <img v-else :src="backgroundUrl" alt="" />
+      <video v-if="videoUrl" :src="src" autoplay muted loop />
+      <img v-else :src="src" alt="" />
 
       <div class="content-wrapper">
         <div

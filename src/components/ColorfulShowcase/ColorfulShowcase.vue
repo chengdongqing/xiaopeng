@@ -2,17 +2,25 @@
 import Button from '@/components/Button/Button.vue'
 import TitleBar from '@/components/TitleBar/TitleBar.vue'
 import { ref } from 'vue'
-import colors from './colors.ts'
+
+defineProps<{
+  name: string
+  title: string
+  subtitle: string
+  nameIconUrl: string
+  options: {
+    name: string
+    paneUrl: string
+    pictureUrl: string
+  }[]
+}>()
 
 const current = ref(0)
 </script>
 
 <template>
   <div class="container">
-    <TitleBar
-      title="点亮全新色彩，探索不同"
-      subtitle="色彩灵感来源富有探索精神的宽广宇宙和自然景观"
-    />
+    <TitleBar :title="title" :subtitle="subtitle" />
 
     <div class="main">
       <img
@@ -21,7 +29,7 @@ const current = ref(0)
         alt=""
       />
       <img
-        v-for="(item, index) in colors"
+        v-for="(item, index) in options"
         :key="item.name"
         :src="item.pictureUrl"
         :class="{ active: index === current }"
@@ -32,7 +40,7 @@ const current = ref(0)
 
     <div class="color-bar">
       <div
-        v-for="(item, index) in colors"
+        v-for="(item, index) in options"
         :key="item.name"
         class="color-item"
         :class="{ active: index === current }"
@@ -41,7 +49,7 @@ const current = ref(0)
         <img :src="item.paneUrl" alt="" class="img-pane" />
         <span class="name">{{ item.name }}</span>
       </div>
-      <Button arrow class="btn">定制我的G6</Button>
+      <Button arrow class="btn">定制我的{{ name }}</Button>
     </div>
   </div>
 </template>

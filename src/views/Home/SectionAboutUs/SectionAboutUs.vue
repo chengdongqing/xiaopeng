@@ -7,7 +7,7 @@ import ShrinkableBanner from '@/components/ShrinkableBanner/ShrinkableBanner.vue
   <ShrinkableBanner
     title="未来出行探索者"
     subtitle="用科技为人类创造更便捷愉悦的出行生活"
-    background-url="https://s.xiaopeng.com/xp-fe/mainsite/2023/home/explore.mp4"
+    src="https://s.xiaopeng.com/xp-fe/mainsite/2023/home/explore.mp4"
     video-url="https://s.xiaopeng.com/xp-fe/mainsite/2023/home/explore-full.mp4"
   >
     <template v-slot:more>

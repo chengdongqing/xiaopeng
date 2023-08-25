@@ -8,7 +8,7 @@ const props = withDefaults(defineProps<SwiperProps>(), {
   autoplay: true,
   interval: 3000,
   duration: 300,
-  cardScale: 0.6,
+  scale: 0.6,
   pauseOnHover: true
 })
 const duration = `${props.duration}ms`
@@ -23,7 +23,7 @@ const size = useElementSize(containerRef)
 const offsetX = computed(() => {
   if (!containerRef.value) return 0
 
-  const width = size.width * count.value * (props.card ? props.cardScale : 1)
+  const width = size.width * count.value * (props.card ? props.scale : 1)
   const perWidth = width / count.value
   const offset = -(perWidth * current.value)
 
@@ -51,7 +51,7 @@ const { startPlay, pausePlay, resetPlay } = useSwiperPlay(props, toNext)
 provide(SwiperInjectionKey, {
   current,
   card: props.card,
-  cardScale: props.cardScale,
+  scale: props.scale,
   register() {
     count.value += 1
     return count.value - 1

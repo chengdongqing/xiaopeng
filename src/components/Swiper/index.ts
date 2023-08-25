@@ -8,14 +8,14 @@ export interface SwiperProps {
   interval?: number
   duration?: number
   card?: boolean
-  cardScale?: number
+  scale?: number
   pauseOnHover?: boolean
 }
 
 export interface SwiperInjectionProps {
   current: Ref<number>
   card: boolean
-  cardScale: number
+  scale: number
   register(): number
   goTo(index: number): void
   toNext(): void

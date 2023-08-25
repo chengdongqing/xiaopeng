@@ -7,11 +7,11 @@ const props = defineProps<{
   id: string
   title: string
   subtitle: string
-  backgroundUrl: string
+  src: string
   videoUrl?: string
 }>()
 
-const backgroundUrl = `url('${props.backgroundUrl}')`
+const src = `url('${props.src}')`
 </script>
 
 <template>
@@ -36,7 +36,7 @@ const backgroundUrl = `url('${props.backgroundUrl}')`
 <style scoped>
 .car-banner {
   height: 100vh;
-  background: v-bind(backgroundUrl) no-repeat 50%;
+  background: v-bind(src) no-repeat 50%;
   background-size: cover;
 }
 

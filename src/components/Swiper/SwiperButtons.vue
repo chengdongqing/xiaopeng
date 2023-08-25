@@ -2,9 +2,9 @@
 withDefaults(
   defineProps<{
     swiperRef: any
-    offset: string
-    leftVisible: boolean
-    rightVisible: boolean
+    offset?: string
+    leftVisible?: boolean
+    rightVisible?: boolean
   }>(),
   {
     offset: '5%',

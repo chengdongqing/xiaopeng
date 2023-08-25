@@ -13,7 +13,8 @@ withDefaults(
 
 <template>
   <div class="img-wrapper">
-    <img :src="src" :alt="alt" class="img" />
+    <video v-if="src.endsWith('.mp4')" :src="src" autoplay muted loop />
+    <img v-else :src="src" :alt="alt" />
   </div>
 </template>
 
@@ -22,9 +23,11 @@ withDefaults(
   border-radius: 0.4rem;
   overflow: hidden;
 
-  .img {
+  :is(video),
+  :is(img) {
     width: 100%;
     height: 100%;
+    object-fit: cover;
     transition: 0.3s;
 
     &:hover {

@@ -1,7 +1,7 @@
 <script setup lang="ts">
 defineProps<{
   title: string
-  subtitle: string
+  subtitle?: string
   color?: string
 }>()
 </script>
@@ -9,7 +9,9 @@ defineProps<{
 <template>
   <div class="title-bar">
     <div class="title" :style="{ color }">{{ title }}</div>
-    <div class="subtitle" :style="{ color }">{{ subtitle }}</div>
+    <div v-if="subtitle" class="subtitle" :style="{ color }">
+      {{ subtitle }}
+    </div>
     <slot />
   </div>
 </template>
