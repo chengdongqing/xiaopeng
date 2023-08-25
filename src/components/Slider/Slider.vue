@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import useLast from '@/hooks/useLast.ts'
-import { ref } from 'vue'
+import { ref, watch } from 'vue'
 import ArrowLeft from './arrow-left.svg'
 import ArrowRight from './arrow-right.svg'
 import useIndexSwitch from './useIndexSwitch.ts'
@@ -22,6 +22,21 @@ const { toPrev, toNext, goTo } = useIndexSwitch({
   current,
   isNext
 })
+
+const offsetX = ref(0)
+watch(
+  () => current.value,
+  () => {
+    function render() {
+      if (offsetX.value === 0) return
+      offsetX.value += (isNext.value ? -1 : 1) * 4
+      requestAnimationFrame(render)
+    }
+
+    offsetX.value = (isNext.value ? 1 : -1) * 100
+    render()
+  }
+)
 </script>
 
 <template>
@@ -29,19 +44,29 @@ const { toPrev, toNext, goTo } = useIndexSwitch({
     <div class="images-wrapper">
       <div
         class="img-outer"
-        :class="{ active: index === current, next: isNext }"
-        :style="{ zIndex: index === current ? 3 : index === last ? 2 : 1 }"
+        :style="{
+          zIndex: index === current ? 3 : index === last ? 2 : 1,
+          transform: index === current ? `translate3d(${offsetX}%,0,0)` : 'none'
+        }"
         v-for="(item, index) in options"
         :key="item.title"
       >
-        <video
-          v-if="item.src.endsWith('.mp4')"
-          :src="item.src"
-          autoplay
-          muted
-          loop
-        />
-        <img v-else :src="item.src" alt="" />
+        <div
+          style="width: 100%; height: 100%"
+          :style="{
+            transform:
+              index === current ? `translate3d(${-offsetX}%,0,0)` : 'none'
+          }"
+        >
+          <video
+            v-if="item.src.endsWith('.mp4')"
+            :src="item.src"
+            autoplay
+            muted
+            loop
+          />
+          <img v-else :src="item.src" alt="" />
+        </div>
       </div>
 
       <img :src="ArrowLeft" alt="" class="btn left" @click="toPrev" />
@@ -64,24 +89,6 @@ const { toPrev, toNext, goTo } = useIndexSwitch({
 </template>
 
 <style scoped>
-@keyframes visible {
-  from {
-    transform: translateX(100%);
-  }
-  to {
-    transform: translateX(0);
-  }
-}
-
-@keyframes visible-reverse {
-  from {
-    transform: translateX(-100%);
-  }
-  to {
-    transform: translateX(0);
-  }
-}
-
 .slider {
   width: 96rem;
   margin: auto;
@@ -98,15 +105,7 @@ const { toPrev, toNext, goTo } = useIndexSwitch({
       width: 100%;
       height: 100%;
       z-index: 0;
-
-      &.active {
-        z-index: 1;
-        animation: visible-reverse 0.6s forwards;
-
-        &.next {
-          animation: visible 0.6s forwards;
-        }
-      }
+      overflow: hidden;
     }
 
     :is(video),
