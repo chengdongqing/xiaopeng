@@ -35,3 +35,30 @@ export const perceptionVideos = [
     src: 'https://s.xiaopeng.com/xp-fe/mainsite/2023/g6/v1_5/p10-2-1.jpg'
   }
 ]
+
+export const voiceOptions = [
+  {
+    title: '可见即可说',
+    subtitle: '全系统均支持可见即可说，包括第三方应用',
+    iconUrl:
+      'https://s.xiaopeng.com/xp-fe/mainsite/2023/g6/v1_5/voice-icon1.svg'
+  },
+  {
+    title: '免唤醒',
+    subtitle: '绝大部分交互指令无需唤醒，可直接发出语音指令',
+    iconUrl:
+      'https://s.xiaopeng.com/xp-fe/mainsite/2023/g6/v1_5/voice-icon3.svg'
+  },
+  {
+    title: '无网络对话',
+    subtitle: '无网/弱网支持全车600+功能使用',
+    iconUrl:
+      'https://s.xiaopeng.com/xp-fe/mainsite/2023/g6/v1_5/voice-icon2.svg'
+  },
+  {
+    title: '四音区识别',
+    subtitle: '同时处理四路语音信号，识别音区及不同人的声音',
+    iconUrl:
+      'https://s.xiaopeng.com/xp-fe/mainsite/2023/g6/v1_5/voice-icon4.svg'
+  }
+]
