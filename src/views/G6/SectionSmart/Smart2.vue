@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import Slider from '@/components/Slider/Slider.vue'
+import SlideSwiper from '@/components/SlideSwiper/SlideSwiper.vue'
 import TitleBar from '@/components/TitleBar/TitleBar.vue'
 import { XNGPSlides } from './resources.ts'
 </script>
@@ -7,6 +7,6 @@ import { XNGPSlides } from './resources.ts'
 <template>
   <div style="padding-bottom: 12rem">
     <TitleBar title="XNGP全场景智能辅助驾驶" />
-    <Slider :options="XNGPSlides" />
+    <SlideSwiper :options="XNGPSlides" />
   </div>
 </template>

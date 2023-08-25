@@ -8,10 +8,13 @@ defineProps<{
 
 <template>
   <div class="title-bar">
-    <div class="title" :style="{ color }">{{ title }}</div>
-    <div v-if="subtitle" class="subtitle" :style="{ color }">
-      {{ subtitle }}
-    </div>
+    <div class="title" :style="{ color }" v-html="title" />
+    <div
+      v-if="subtitle"
+      class="subtitle"
+      :style="{ color }"
+      v-html="subtitle"
+    />
     <slot />
   </div>
 </template>
@@ -36,6 +39,10 @@ defineProps<{
     letter-spacing: 0.2rem;
     color: rgba(0, 0, 0, 0.6);
     line-height: 1.75;
+  }
+
+  &:deep(.en) {
+    font-family: BasisGrotesque-Regular, serif;
   }
 }
 </style>

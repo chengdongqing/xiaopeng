@@ -41,7 +41,7 @@ watch(
 </script>
 
 <template>
-  <div class="slider">
+  <div class="slide-swiper">
     <div class="images-wrapper">
       <div
         class="img-outer"
@@ -78,7 +78,7 @@ watch(
 </template>
 
 <style scoped>
-.slider {
+.slide-swiper {
   width: 96rem;
   margin: auto;
 

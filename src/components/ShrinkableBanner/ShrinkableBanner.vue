@@ -33,18 +33,16 @@ const scale = useElementScale(containerRef)
             transform: `translate3d(0, ${100 - scale}px, 0)`,
             opacity: scale / 100
           }"
-        >
-          {{ title }}
-        </div>
+          v-html="title"
+        />
         <div
           class="subtitle"
           :style="{
             transform: `translate3d(0, ${100 * 4 - scale * 4}px, 0)`,
             opacity: scale === 100 ? 1 : scale / 100 - 0.3
           }"
-        >
-          {{ subtitle }}
-        </div>
+          v-html="subtitle"
+        />
         <div
           class="more"
           :style="{

@@ -1,14 +1,21 @@
 <script setup lang="ts">
 import CarBanner from '@/components/CarBanner/CarBanner.vue'
+import CardSwiper from '@/components/CardSwiper/CardSwiper.vue'
 import ColorfulShowcase from '@/components/ColorfulShowcase/ColorfulShowcase.vue'
 import HeaderBar from '@/components/HeaderBar/HeaderBar.vue'
 import ShrinkableBanner from '@/components/ShrinkableBanner/ShrinkableBanner.vue'
-import Slider from '@/components/Slider/Slider.vue'
-import { carColors, insideSlides } from './resources.ts'
+import SlideSwiper from '@/components/SlideSwiper/SlideSwiper.vue'
+import {
+  architectureDetails,
+  carColors,
+  carFeatures,
+  insideSlides
+} from './resources.ts'
 import SectionDesignConsultant from './SectionDesignConsultant/SectionDesignConsultant.vue'
 import SectionDesignDetails from './SectionDesignDetails/SectionDesignDetails.vue'
+import SectionElectricalArchitecture from './SectionElectricalArchitecture/SectionElectricalArchitecture.vue'
 import SectionFamily from './SectionFamily/SectionFamily.vue'
-import SectionFeatures from './SectionFeatures/SectionFeatures.vue'
+import SectionPerformance from './SectionPerformance/SectionPerformance.vue'
 import SectionSmart from './SectionSmart/SectionSmart.vue'
 </script>
 
@@ -26,7 +33,10 @@ import SectionSmart from './SectionSmart/SectionSmart.vue'
     src="https://s.xiaopeng.com/xp-fe/mainsite/2023/g6/v1_5/p3-1.jpg"
   />
   <SectionDesignConsultant />
-  <SectionFeatures />
+  <CardSwiper
+    :options="carFeatures"
+    style="background-color: var(--color-background)"
+  />
   <ColorfulShowcase
     name="G6"
     title="点亮全新色彩，探索不同"
@@ -36,6 +46,9 @@ import SectionSmart from './SectionSmart/SectionSmart.vue'
   />
   <SectionDesignDetails />
   <SectionFamily />
-  <Slider :options="insideSlides" style="padding: 12rem 0" />
+  <SlideSwiper :options="insideSlides" style="padding: 12rem 0" />
   <SectionSmart />
+  <SectionElectricalArchitecture />
+  <SectionPerformance />
+  <CardSwiper :options="architectureDetails" />
 </template>

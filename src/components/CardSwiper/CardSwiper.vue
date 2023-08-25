@@ -1,22 +1,30 @@
 <script setup lang="ts">
 import * as Swiper from '@/components/Swiper'
 import { ref } from 'vue'
-import features from './features.ts'
+
+defineProps<{
+  options: {
+    title: string
+    description: string
+    pictureUrl: string
+    videoUrl?: string
+  }[]
+}>()
 
 const swiperRef = ref()
 const current = ref(0)
 </script>
 
 <template>
-  <div class="container">
+  <div class="card-swiper">
     <Swiper.Container
-      ref="swiperRef"
-      :autoplay="false"
-      :duration="1000"
       card
+      ref="swiperRef"
+      :duration="1000"
+      :autoplay="false"
       @change="(index) => (current = index)"
     >
-      <Swiper.Item v-for="(item, index) in features" :key="item.title">
+      <Swiper.Item v-for="(item, index) in options" :key="item.title">
         <video
           v-if="item.videoUrl && index === current"
           :src="item.videoUrl"
@@ -27,8 +35,8 @@ const current = ref(0)
         <img v-else :src="item.pictureUrl" alt="" />
 
         <div class="content-wrapper">
-          <div class="title">{{ item.title }}</div>
-          <div class="subtitle">{{ item.subtitle }}</div>
+          <div class="title" v-html="item.title" />
+          <div class="description" v-html="item.description" />
         </div>
       </Swiper.Item>
     </Swiper.Container>
@@ -36,14 +44,13 @@ const current = ref(0)
       :swiper-ref="swiperRef"
       offset="14%"
       :left-visible="current > 0"
-      :right-visible="current < features.length - 1"
+      :right-visible="current < options.length - 1"
     />
   </div>
 </template>
 
 <style scoped>
-.container {
-  background-color: var(--color-background);
+.card-swiper {
   padding: 12rem 0;
 
   :is(img),
@@ -52,30 +59,30 @@ const current = ref(0)
     height: 100%;
     object-fit: cover;
   }
-}
 
-.content-wrapper {
-  position: absolute;
-  bottom: 4rem;
-  left: 0;
-  right: 0;
-  text-align: center;
-  color: #fff;
-
-  .title {
-    font-weight: 200;
-    font-size: 1.8rem;
-    line-height: 2.5rem;
-    letter-spacing: 0.6rem;
-  }
-
-  .subtitle {
-    margin-top: 0.8rem;
-    font-weight: 200;
-    font-size: 1.4rem;
-    line-height: 2.6rem;
+  .content-wrapper {
+    position: absolute;
+    bottom: 4rem;
+    left: 0;
+    right: 0;
+    text-align: center;
     color: #fff;
-    left: 0.2rem;
+
+    .title {
+      font-weight: 200;
+      font-size: 1.8rem;
+      line-height: 2.5rem;
+      letter-spacing: 0.6rem;
+    }
+
+    .description {
+      margin-top: 0.8rem;
+      font-weight: 200;
+      font-size: 1.4rem;
+      line-height: 2.6rem;
+      color: #fff;
+      left: 0.2rem;
+    }
   }
 }
 </style>
