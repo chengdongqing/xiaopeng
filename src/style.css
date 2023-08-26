@@ -31,6 +31,11 @@ html {
     font-size: max(0.4vw, 10px);
 }
 
+body {
+    line-height: 1.5;
+    font-family: system, -apple-system, BlinkMacSystemFont, PingFang SC, Segoe UI, Microsoft YaHei, wenquanyi micro hei, Hiragino Sans GB, Hiragino Sans GB W3, Roboto, Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, Helvetica, Arial, sans-serif;
+}
+
 img,
 video {
     vertical-align: middle;
