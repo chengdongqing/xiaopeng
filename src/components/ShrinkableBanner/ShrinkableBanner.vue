@@ -12,7 +12,7 @@ const props = defineProps<{
 }>()
 
 const containerRef = ref()
-const scale = props.static ? 100 : useElementScale(containerRef)
+const scale = props.static ? ref(100) : useElementScale(containerRef)
 </script>
 
 <template>

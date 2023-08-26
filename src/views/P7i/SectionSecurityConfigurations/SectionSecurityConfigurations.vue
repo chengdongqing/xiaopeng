@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import options from './options.js'
+import options from './options'
 </script>
 
 <template>

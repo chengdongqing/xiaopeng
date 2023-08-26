@@ -16,9 +16,13 @@ export interface SwiperInjectionProps {
   current: Ref<number>
   card: boolean
   scale: number
+
   register(): number
+
   goTo(index: number): void
+
   toNext(): void
+
   toPrev(): void
 }
 

@@ -9,6 +9,10 @@ const props = defineProps<{
 }>()
 
 const current = ref(props.value || 0)
+
+function handleCarChange(e: Event) {
+  current.value = Number((e.target as HTMLSelectElement)?.value)
+}
 </script>
 
 <template>
@@ -36,7 +40,7 @@ const current = ref(props.value || 0)
           class="form-item select"
           name="model"
           :value="current"
-          @change="current = Number($event.target.value)"
+          @change="handleCarChange"
         >
           <option v-for="(item, index) in cars" :key="item.name" :value="index">
             {{ item.name }}

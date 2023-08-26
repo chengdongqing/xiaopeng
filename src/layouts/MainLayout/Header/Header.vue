@@ -26,7 +26,7 @@ const isDarkTheme = useDarkTheme(isCarsVisible)
     <div class="menus">
       <div
         class="menu-item-wrapper"
-        @mouseenter="onVisibleChange"
+        @mouseenter="onVisibleChange(true)"
         @mouseleave="onVisibleChange(false)"
       >
         <CarAnimationIcon :active="isCarsVisible" />

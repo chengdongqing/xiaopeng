@@ -1,4 +1,4 @@
-<script setup>
+<script setup lang="ts">
 import ReserveForm from '@/components/ReserveForm/ReserveForm.vue'
 import Section3dCars from './Section3dCars/Section3dCars.vue'
 import SectionAboutUs from './SectionAboutUs/SectionAboutUs.vue'
