@@ -22,6 +22,10 @@ function handleChange(index: number) {
 
 <template>
   <div class="tabs-swiper">
+    <div class="title">
+      <slot name="title" />
+    </div>
+
     <Swiper.Container ref="swiperRef" :autoplay="false" @change="handleChange">
       <Swiper.Item v-for="item in options" :key="item.title">
         <video
@@ -47,6 +51,14 @@ function handleChange(index: number) {
 
 <style scoped>
 .tabs-swiper {
+  .title {
+    z-index: 1;
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
   :is(video),
   :is(img) {
     width: 100%;

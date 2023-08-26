@@ -5,11 +5,12 @@ defineProps<{
     value: number
     unit?: string
   }[]
+  darkTheme?: boolean
 }>()
 </script>
 
 <template>
-  <div class="name-value-group">
+  <div class="name-value-group" :class="{ dark: darkTheme }">
     <div v-for="item in options" :key="item.name">
       <div class="name" v-html="item.name" />
       <div class="value">
@@ -25,6 +26,14 @@ defineProps<{
   display: flex;
   justify-content: space-between;
   color: #fff;
+
+  &.dark {
+    color: #000;
+
+    .name {
+      opacity: 0.6;
+    }
+  }
 
   .name {
     opacity: 0.8;

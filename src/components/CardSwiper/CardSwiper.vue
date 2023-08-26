@@ -4,8 +4,8 @@ import { ref } from 'vue'
 
 defineProps<{
   options: {
-    title: string
-    description: string
+    title?: string
+    description?: string
     pictureUrl: string
     videoUrl?: string
   }[]
@@ -35,8 +35,12 @@ const current = ref(0)
         <img v-else :src="item.pictureUrl" alt="" />
 
         <div class="content-wrapper">
-          <div class="title" v-html="item.title" />
-          <div class="description" v-html="item.description" />
+          <div v-if="item.title" class="title" v-html="item.title" />
+          <div
+            v-if="item.description"
+            class="description"
+            v-html="item.description"
+          />
         </div>
       </Swiper.Item>
     </Swiper.Container>

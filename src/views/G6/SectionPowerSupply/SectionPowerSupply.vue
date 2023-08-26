@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import Button from '@/components/Button/Button.vue'
+import EnduranceBottomBar from '@/components/EnduranceBottomBar/EnduranceBottomBar.vue'
 import NameDescriptionGroup from '@/components/NameDescriptionGroup/NameDescriptionGroup.vue'
 import NameValueGroup from '@/components/NameValueGroup/NameValueGroup.vue'
 import ShrinkableBanner from '@/components/ShrinkableBanner/ShrinkableBanner.vue'
@@ -13,27 +13,21 @@ import TitleBar from '@/components/TitleBar/TitleBar.vue'
       subtitle="超低能耗，续航更真实，远行无忧"
       src="https://s.xiaopeng.com/xp-fe/mainsite/2023/g6/v1_5/p15-1.jpg"
     />
-    <div class="content-wrapper">
-      <NameValueGroup
-        :options="[
-          {
-            name: 'CLTC综合续航最高',
-            value: 755,
-            unit: 'km'
-          },
-          {
-            name: '百公里综合工况电耗',
-            value: 13.2,
-            unit: 'kWh/100km'
-          }
-        ]"
-        class="left"
-      />
-      <div class="right">
-        <Button arrow color="#fff" arrow-color="#fff">G6配置表</Button>
-        <Button arrow class="btn-right">里程计算器</Button>
-      </div>
-    </div>
+    <EnduranceBottomBar
+      name="G6"
+      :options="[
+        {
+          name: 'CLTC综合续航最高',
+          value: 755,
+          unit: 'km'
+        },
+        {
+          name: '百公里综合工况电耗',
+          value: 13.2,
+          unit: 'kWh/100km'
+        }
+      ]"
+    />
   </div>
 
   <div class="p2">
@@ -93,29 +87,6 @@ import TitleBar from '@/components/TitleBar/TitleBar.vue'
 </template>
 
 <style scoped>
-.p1 {
-  .content-wrapper {
-    position: absolute;
-    left: 0;
-    right: 0;
-    bottom: 6.4rem;
-    display: flex;
-    align-items: flex-end;
-    justify-content: center;
-
-    .left {
-      width: 41.4rem;
-      margin-right: 14rem;
-    }
-
-    .right .btn-right {
-      margin-left: 1.6rem;
-      background-color: #fff;
-      border-color: #fff;
-    }
-  }
-}
-
 .p2 {
   padding-bottom: 12rem;
 

@@ -23,11 +23,7 @@ const current = ref(0)
     <TitleBar :title="title" :subtitle="subtitle" />
 
     <div class="main">
-      <img
-        src="https://s.xiaopeng.com/xp-fe/mainsite/2023/g6/v1_5/g6-logo.svg"
-        class="name-icon"
-        alt=""
-      />
+      <img :src="nameIconUrl" class="name-icon" alt="" />
       <img
         v-for="(item, index) in options"
         :key="item.name"

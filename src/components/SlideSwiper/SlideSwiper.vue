@@ -81,6 +81,7 @@ watch(
 .slide-swiper {
   width: 96rem;
   margin: auto;
+  padding: 12rem 0;
 
   .images-wrapper {
     width: 100%;

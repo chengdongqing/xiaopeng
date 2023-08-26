@@ -1,0 +1,46 @@
+<script setup lang="ts">
+import Button from '@/components/Button/Button.vue'
+import NameValueGroup from '@/components/NameValueGroup/NameValueGroup.vue'
+
+defineProps<{
+  name: string
+  options: {
+    name: string
+    value: number
+    unit: string
+  }[]
+}>()
+</script>
+
+<template>
+  <div class="endurance-bottom-bar">
+    <NameValueGroup :options="options" class="left" />
+    <div class="right">
+      <Button arrow color="#fff" arrow-color="#fff">{{ name }}配置表</Button>
+      <Button arrow class="btn-right">里程计算器</Button>
+    </div>
+  </div>
+</template>
+
+<style scoped>
+.endurance-bottom-bar {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 6.4rem;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+
+  .left {
+    width: 41.4rem;
+    margin-right: 14rem;
+  }
+
+  .right .btn-right {
+    margin-left: 1.6rem;
+    background-color: #fff;
+    border-color: #fff;
+  }
+}
+</style>

@@ -1,17 +1,15 @@
 <script setup lang="ts">
 import Button from '@/components/Button/Button.vue'
 import TitleBar from '@/components/TitleBar/TitleBar.vue'
-import modes from './modes.ts'
+import options from './options.ts'
 </script>
 
 <template>
   <div class="container">
-    <TitleBar
-      title="<span class='en'>5</span>种驾驶模式随心换，轻松驾驭各种天气和路况"
-    />
+    <TitleBar title="多种驾驶模式，满足个性驾驶乐趣" />
 
     <div class="modes">
-      <div class="mode-item" v-for="item in modes" :key="item.name">
+      <div class="mode-item" v-for="item in options" :key="item.name">
         <img :src="item.iconUrl" alt="" class="icon" />
         <div class="name" v-html="item.name" />
         <div class="description">{{ item.description }}</div>
@@ -28,10 +26,11 @@ import modes from './modes.ts'
 .container {
   padding-bottom: 12rem;
   text-align: center;
+  background-color: var(--color-background);
 }
 
 .modes {
-  width: 140rem;
+  width: 132rem;
   margin: auto;
   display: flex;
   flex-wrap: wrap;
@@ -39,10 +38,9 @@ import modes from './modes.ts'
 
   .mode-item {
     flex: 1;
-    height: 23.2rem;
-    min-width: 44.2rem;
+    height: 37.2rem;
     border-radius: 1rem;
-    background-color: var(--color-background);
+    background-color: #fff;
     display: grid;
     justify-items: center;
     align-content: center;
@@ -61,6 +59,7 @@ import modes from './modes.ts'
     .description {
       font-size: 1.4rem;
       color: #b3b3b3;
+      padding: 0 5.6rem;
     }
   }
 }

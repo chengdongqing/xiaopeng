@@ -86,10 +86,6 @@ import { options2, options3, options4 } from './resources.ts'
   }
 }
 
-.p3 {
-  padding: 12rem 0;
-}
-
 .p4 {
   padding-bottom: 12rem;
 
