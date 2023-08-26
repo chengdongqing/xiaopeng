@@ -2,17 +2,16 @@
 import { inject } from 'vue'
 import { SwiperInjectionKey } from './index.ts'
 
-const { current, card, scale, register, goTo } =
-  inject(SwiperInjectionKey) || {}
-const index = register?.() || 0
+const { current, card, scale, register, goTo } = inject(SwiperInjectionKey)!!
+const index = register()
 </script>
 
 <template>
   <div
     class="swiper-item"
-    :style="{ width: `${card && scale ? scale * 100 : 100}%` }"
+    :style="{ width: `${card ? scale * 100 : 100}%` }"
     :class="{ card, active: index === current }"
-    @click="card && index !== current && goTo?.(index)"
+    @click="card && index !== current && goTo(index)"
   >
     <slot />
   </div>

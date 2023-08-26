@@ -31,7 +31,7 @@ import modes from './modes.ts'
 }
 
 .modes {
-  width: 140rem;
+  max-width: 140rem;
   margin: auto;
   display: flex;
   flex-wrap: wrap;
