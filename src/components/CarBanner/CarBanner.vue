@@ -68,10 +68,6 @@ const src = `url('${props.src}')`
     line-height: 4rem;
     letter-spacing: 0.6rem;
     margin-bottom: 1.6rem;
-
-    &:deep(.en) {
-      font-family: BasisGrotesque-Regular, serif;
-    }
   }
 
   .subtitle {

@@ -5,7 +5,7 @@ import CarBanner from '@/components/CarBanner/CarBanner.vue'
 <template>
   <CarBanner
     id="g6"
-    :title="`小鹏<span class='en'>P5</span`"
+    title="小鹏<span class='en'>P5</span"
     subtitle="百变舒适 智能家轿"
     src="https://s.xiaopeng.com/xp-fe/mainsite/2023/p5/p1.jpg"
     video-url="https://vd.xiaopeng.com/xp-fe/mainsite/2023/p5/p5-p1-video.mp4"

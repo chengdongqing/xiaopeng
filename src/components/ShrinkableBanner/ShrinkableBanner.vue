@@ -3,15 +3,16 @@ import ButtonVideoPlayer from '@/components/ButtonVideoPlayer/ButtonVideoPlayer.
 import useElementScale from '@/hooks/useElementScale.ts'
 import { ref } from 'vue'
 
-defineProps<{
+const props = defineProps<{
   title: string
-  subtitle: string
+  subtitle?: string
   src: string
   videoUrl?: string
+  static?: boolean
 }>()
 
 const containerRef = ref()
-const scale = useElementScale(containerRef)
+const scale = props.static ? 100 : useElementScale(containerRef)
 </script>
 
 <template>
@@ -23,7 +24,7 @@ const scale = useElementScale(containerRef)
         height: `${scale}%`
       }"
     >
-      <video v-if="videoUrl" :src="src" autoplay muted loop />
+      <video v-if="src.endsWith('.mp4')" :src="src" autoplay muted loop />
       <img v-else :src="src" alt="" />
 
       <div class="content-wrapper">
@@ -36,6 +37,7 @@ const scale = useElementScale(containerRef)
           v-html="title"
         />
         <div
+          v-if="subtitle"
           class="subtitle"
           :style="{
             transform: `translate3d(0, ${100 * 4 - scale * 4}px, 0)`,
@@ -88,7 +90,6 @@ const scale = useElementScale(containerRef)
   .title {
     margin-bottom: 1.6rem;
     font-family: HYYakuHei, serif;
-    font-weight: 300;
     font-size: 3.2rem;
     letter-spacing: 0.4rem;
     color: #fff;
@@ -96,7 +97,7 @@ const scale = useElementScale(containerRef)
 
   .subtitle {
     font-size: 1.6rem;
-    font-weight: 400;
+    font-weight: 200;
     letter-spacing: 0.2rem;
     color: #fff;
     line-height: 1.75;

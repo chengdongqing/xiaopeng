@@ -112,7 +112,7 @@ watch(
       top: 50%;
       transform: translateY(-50%);
       cursor: pointer;
-      z-index: 100;
+      z-index: 10;
       opacity: 0.6;
       transition: 0.3s;
 

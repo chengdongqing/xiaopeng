@@ -34,7 +34,7 @@ const visible = usePageScrolled()
 
 <style scoped>
 .header-bar {
-  z-index: 10;
+  z-index: 99;
   position: fixed;
   top: -5.6rem;
   left: 0;

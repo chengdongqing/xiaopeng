@@ -72,7 +72,7 @@ const isDarkTheme = useDarkTheme(isCarsVisible)
   top: 0;
   left: 0;
   right: 0;
-  z-index: 10;
+  z-index: 98;
   height: 5.6rem;
   padding: 0 4rem;
   display: flex;

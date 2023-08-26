@@ -57,7 +57,7 @@ import contents from './contents.ts'
 }
 
 .qrcode-wrapper {
-  margin: -8.7rem auto 0;
+  margin: -3rem auto 0;
   width: 15.4rem;
   height: 15.4rem;
   padding: 0.7rem;

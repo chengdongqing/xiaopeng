@@ -1,12 +1,17 @@
 <script setup lang="ts">
 import Grid from '@/components/Grid/Grid.vue'
-import TitleBar from '@/components/TitleBar/TitleBar.vue'
-import { voiceOptions } from '@/views/G6/SectionSmart/resources.ts'
+import ShrinkableBanner from '@/components/ShrinkableBanner/ShrinkableBanner.vue'
+import { voiceOptions } from './resources.ts'
 </script>
 
 <template>
-  <div class="container">
-    <TitleBar title="Xmart OS 4.0 车载智能系统" color="#fff" />
+  <div>
+    <ShrinkableBanner
+      title="Xmart OS 4.0 车载智能系统"
+      src="https://s.xiaopeng.com/xp-fe/mainsite/2023/g6/v1_5/p12-new.jpg"
+      static
+      style="height: 132.6rem; min-height: 120vh"
+    />
 
     <div class="voice-v2">
       <div class="voice-title">全场景语音2.0</div>
@@ -28,14 +33,6 @@ import { voiceOptions } from '@/views/G6/SectionSmart/resources.ts'
 </template>
 
 <style scoped>
-.container {
-  height: 132.6rem;
-  min-height: 120vh;
-  background: url('https://s.xiaopeng.com/xp-fe/mainsite/2023/g6/v1_5/p12-new.jpg')
-    center no-repeat;
-  background-size: cover;
-}
-
 .voice-v2 {
   position: absolute;
   bottom: 6.4rem;

@@ -6,8 +6,8 @@ import TitleBar from '@/components/TitleBar/TitleBar.vue'
   <div class="container">
     <TitleBar
       color="#fff"
-      :title="`<span class='en'>X-EEA3.5</span>电子电气架构`"
-      :subtitle="`利用多核芯片，集中控制六大功能域，OTA升级速度提升300%<sup>6</sup>`"
+      title="<span class='en'>X-EEA3.5</span>电子电气架构"
+      subtitle="利用多核芯片，集中控制六大功能域，OTA升级速度提升300%<sup>6</sup>"
       class="title"
     />
 

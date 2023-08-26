@@ -36,13 +36,10 @@ defineProps<{
 
   .subtitle {
     font-size: 1.6rem;
+    font-weight: 200;
     letter-spacing: 0.2rem;
     color: rgba(0, 0, 0, 0.6);
     line-height: 1.75;
-  }
-
-  &:deep(.en) {
-    font-family: BasisGrotesque-Regular, serif;
   }
 }
 </style>

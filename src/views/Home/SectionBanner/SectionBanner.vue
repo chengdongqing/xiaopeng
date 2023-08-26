@@ -104,10 +104,6 @@ const swiperRef = ref()
     font-size: 3.2rem;
     letter-spacing: 0.6rem;
     line-height: 1.5;
-
-    &:deep(.en) {
-      font-family: BasisGrotesque-Regular, serif;
-    }
   }
 }
 

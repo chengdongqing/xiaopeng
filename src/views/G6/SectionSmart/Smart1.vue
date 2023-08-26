@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import NameDescriptionGroup from '@/components/NameDescriptionGroup/NameDescriptionGroup.vue'
 import ShrinkableBanner from '@/components/ShrinkableBanner/ShrinkableBanner.vue'
 </script>
 
@@ -9,16 +10,19 @@ import ShrinkableBanner from '@/components/ShrinkableBanner/ShrinkableBanner.vue
       subtitle="率先实现更高阶的全场景智驾，更先进、更可靠、更好用"
       src="https://s.xiaopeng.com/xp-fe/mainsite/2023/g6/v1_5/p9-1.jpg"
     />
-    <div class="content-wrapper">
-      <div>
-        <div class="title">XNGP</div>
-        <div class="subtitle">智能辅助驾驶系统</div>
-      </div>
-      <div>
-        <div class="title">Xmart OS 4.0</div>
-        <div class="subtitle">车载智能系统</div>
-      </div>
-    </div>
+    <NameDescriptionGroup
+      :options="[
+        {
+          name: 'XNGP',
+          description: '智能辅助驾驶系统'
+        },
+        {
+          name: 'Xmart OS 4.0',
+          description: '车载智能系统'
+        }
+      ]"
+      class="content-wrapper"
+    />
   </div>
 </template>
 
@@ -29,22 +33,5 @@ import ShrinkableBanner from '@/components/ShrinkableBanner/ShrinkableBanner.vue
   left: 50%;
   bottom: 6.4rem;
   transform: translateX(-50%);
-  display: flex;
-  justify-content: space-between;
-  text-align: center;
-  color: #fff;
-
-  .title {
-    font-size: 2.4rem;
-    line-height: 2.8rem;
-  }
-
-  .subtitle {
-    margin-top: 1.6rem;
-    opacity: 0.8;
-    font-size: 1.6rem;
-    font-weight: 200;
-    line-height: 2.4rem;
-  }
 }
 </style>

@@ -35,3 +35,11 @@ img,
 video {
     vertical-align: middle;
 }
+
+sup {
+    font-size: 1.2rem;
+}
+
+.en {
+    font-family: BasisGrotesque-Regular, serif;
+}

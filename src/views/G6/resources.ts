@@ -81,7 +81,7 @@ export const carColors = [
   }
 ]
 
-export const insideSlides = [
+export const spaceSlides = [
   {
     title: '180°放倒变身休息舱',
     description:

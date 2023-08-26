@@ -9,13 +9,16 @@ import {
   architectureDetails,
   carColors,
   carFeatures,
-  insideSlides
+  spaceSlides
 } from './resources.ts'
 import SectionDesignConsultant from './SectionDesignConsultant/SectionDesignConsultant.vue'
 import SectionDesignDetails from './SectionDesignDetails/SectionDesignDetails.vue'
+import SectionDrivingModes from './SectionDrivingModes/SectionDrivingModes.vue'
 import SectionElectricalArchitecture from './SectionElectricalArchitecture/SectionElectricalArchitecture.vue'
-import SectionFamily from './SectionFamily/SectionFamily.vue'
+import SectionFooter from './SectionFooter/SectionFooter.vue'
 import SectionPerformance from './SectionPerformance/SectionPerformance.vue'
+import SectionPowerSupply from './SectionPowerSupply/SectionPowerSupply.vue'
+import SectionSecurity from './SectionSecurity/SectionSecurity.vue'
 import SectionSmart from './SectionSmart/SectionSmart.vue'
 </script>
 
@@ -23,7 +26,7 @@ import SectionSmart from './SectionSmart/SectionSmart.vue'
   <HeaderBar id="g6" name="小鹏G6" price="209900" />
   <CarBanner
     id="g6"
-    :title="`小鹏<span class='en'>G6</span`"
+    title="小鹏<span class='en'>G6</span"
     subtitle="超智驾轿跑SUV"
     src="https://s.xiaopeng.com/xp-fe/mainsite/2023/g6/v1_5/p1-2.12.0.jpg"
   />
@@ -45,10 +48,25 @@ import SectionSmart from './SectionSmart/SectionSmart.vue'
     :options="carColors"
   />
   <SectionDesignDetails />
-  <SectionFamily />
-  <SlideSwiper :options="insideSlides" style="padding: 12rem 0" />
+  <ShrinkableBanner
+    title="装下一家人的快乐"
+    subtitle="2890mm长轴距，带上爱的一切满载出发"
+    src="https://s.xiaopeng.com/xp-fe/mainsite/2023/g6/v1_5/p8-new.jpg"
+    static
+  />
+  <SlideSwiper :options="spaceSlides" style="padding: 12rem 0" />
   <SectionSmart />
   <SectionElectricalArchitecture />
   <SectionPerformance />
   <CardSwiper :options="architectureDetails" />
+  <SectionDrivingModes />
+  <SectionPowerSupply />
+  <SectionSecurity />
+  <ShrinkableBanner
+    title="SEPA2.0扶摇技术架构 首款战略车型"
+    subtitle="中型智能纯电SUV新标杆"
+    src="https://s.xiaopeng.com/xp-fe/mainsite/2023/g6/v1_5/p2.jpg"
+    static
+  />
+  <SectionFooter />
 </template>

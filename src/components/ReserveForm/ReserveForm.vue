@@ -32,7 +32,7 @@ const current = ref(props.value || 0)
 
       <form class="form" @submit.prevent="">
         <select
-          v-if="!value"
+          v-if="props.value === undefined"
           class="form-item select"
           name="model"
           :value="current"
