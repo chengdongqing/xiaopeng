@@ -73,7 +73,7 @@ const isOtherPage = useIsOtherPage()
   position: sticky;
   top: 0;
   height: 5.6rem;
-  background-color: #999;
+  background-color: #666;
 }
 
 .header {

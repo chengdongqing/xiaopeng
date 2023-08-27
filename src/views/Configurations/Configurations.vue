@@ -1,6 +1,7 @@
 <script setup lang="ts">
+import useThrottle from '@/hooks/useThrottle.ts'
 import { capitalizeFirstLetter, formatAmount } from '@/utils'
-import { computed, ref } from 'vue'
+import { computed, onMounted, onUnmounted, ref, watch } from 'vue'
 import { useRoute } from 'vue-router'
 import { ConfigurationProps } from './index.ts'
 
@@ -10,9 +11,9 @@ const current = ref(0)
 
 const { params } = useRoute()
 const id = params.id as string
-const path = `./options/${id}.ts`
+const path = `./configs/${id}.ts`
 import(path).then((res) => {
-  configurations.value = res.configurations
+  configurations.value = res.configs
   remarks.value = res.remarks
 })
 
@@ -42,7 +43,11 @@ function displayValue({
   return '—'
 }
 
-function isSameValue(index: number, index1: number, index2: number) {
+const hiddenSameValueRow = ref(false)
+
+function isSameValue(index: number, index1: number, index2?: number) {
+  if (models.value?.length <= 1) return false
+
   const arr: any[] =
     models.value?.map((item) => {
       return index2 === undefined
@@ -50,78 +55,128 @@ function isSameValue(index: number, index1: number, index2: number) {
         : item.children[index].children[index1].children[index2]
     }) || []
 
-  if (typeof arr[0].value === 'boolean') {
+  if (typeof arr[0].value === 'boolean' && !hiddenSameValueRow.value) {
     return false
   }
   return arr?.every((item: any) => item.value === arr[0].value)
 }
+
+const rows = ref<HTMLTableRowElement[]>([])
+const activeNav = ref(0)
+
+watch(
+  () => configurations.value,
+  () => {
+    setTimeout(() => {
+      rows.value = Array.from(document.querySelectorAll('.table .title'))
+    }, 1000)
+  }
+)
+
+const onPageScroll = useThrottle(() => {
+  rows.value.forEach((item, index) => {
+    if (
+      document.documentElement.scrollTop >=
+      (item as HTMLTableRowElement).offsetTop
+    ) {
+      activeNav.value = index
+    }
+  })
+})
+
+onMounted(() => {
+  window.addEventListener('scroll', onPageScroll)
+})
+onUnmounted(() => {
+  window.removeEventListener('scroll', onPageScroll)
+})
 </script>
 
 <template>
-  <div class="container" v-if="models">
-    <div class="header">
-      <div class="title">
-        <span>{{ capitalizeFirstLetter(id) }}</span> 配置表
+  <div class="header">
+    <div class="wrapper">
+      <div class="top-bar">
+        <div class="title">
+          <span>{{ capitalizeFirstLetter(id) }}</span> 配置表
+        </div>
+        <div class="models">
+          <div
+            class="model-item"
+            :class="{ active: index === current }"
+            v-for="(item, index) in configurations"
+            :key="item.modelName"
+            @click="current = index"
+          >
+            {{ item.modelName }}
+          </div>
+        </div>
+        <div />
       </div>
-      <div class="models">
-        <div class="model-item active">580</div>
-        <div class="model-item">755</div>
-        <div class="model-item">700</div>
+      <div class="filter-bar">
+        <label>
+          <input type="checkbox" v-model="hiddenSameValueRow" />
+          隐藏相同配置
+        </label>
       </div>
-      <div />
+    </div>
+  </div>
+
+  <template v-if="models">
+    <div class="navs">
+      <a
+        class="nav-item"
+        :class="{ active: index === activeNav }"
+        :href="`#${item.title}`"
+        v-for="(item, index) in models[0].children"
+        :key="item.title"
+        @click="activeNav = index"
+      >
+        {{ item.title }}
+      </a>
     </div>
 
-    <div class="filter-bar">
-      <label><input type="checkbox" /> 隐藏相同配置</label>
-    </div>
-
-    <div class="main">
-      <div class="navs">
-        <a
-          class="nav-item"
-          :class="{ active: index === 1 }"
-          :href="`#${item.title}`"
-          v-for="(item, index) in models[0].children"
-          :key="item.title"
-        >
-          {{ item.title }}
-        </a>
-      </div>
-      <div class="table-wrapper">
-        <table class="table">
-          <thead>
-            <tr>
-              <td />
-              <td v-for="item in models" :key="item.subModelName">
-                {{ item.subModelName }}
-              </td>
-            </tr>
-          </thead>
-          <tbody>
-            <tr class="price">
-              <td>全国建议零售价</td>
-              <td v-for="item in models" :key="item.subModelName">
-                ¥{{ formatAmount(item.price) }}
+    <div class="table-wrapper">
+      <table class="table">
+        <thead>
+          <tr>
+            <td />
+            <td v-for="item in models" :key="item.subModelName">
+              {{ item.subModelName }}
+            </td>
+          </tr>
+          <tr class="price">
+            <td>全国建议零售价</td>
+            <td v-for="item in models" :key="item.subModelName">
+              ¥{{ formatAmount(item.price) }}
+            </td>
+          </tr>
+        </thead>
+        <tbody>
+          <template
+            v-for="(item, index) in models[0].children"
+            :key="item.title"
+          >
+            <tr class="title">
+              <td :colspan="models.length + 1">
+                {{ item.title }} <b :id="item.title" style="top: -28rem" />
               </td>
             </tr>
             <template
-              v-for="(item, index) in models[0].children"
-              :key="item.title"
+              v-for="(item1, index1) in item.children"
+              :key="item1.title || item1.name"
             >
-              <tr class="title" :id="item.title">
-                <td :colspan="models.length + 1">{{ item.title }}</td>
-              </tr>
-              <template
-                v-for="(item1, index1) in item.children"
-                :key="item1.title || item1.name"
-              >
-                <template v-if="item1.children">
-                  <tr class="subtitle">
-                    <td :colspan="models.length + 1">{{ item1.title }}</td>
-                  </tr>
+              <template v-if="item1.children">
+                <tr class="subtitle">
+                  <td :colspan="models.length + 1">{{ item1.title }}</td>
+                </tr>
+                <template
+                  v-for="(item2, index2) in item1.children"
+                  :key="item2.name"
+                >
                   <tr
-                    v-for="(item2, index2) in item1.children"
-                    :key="item2.name"
+                    v-if="
+                      !hiddenSameValueRow || !isSameValue(index, index1, index2)
+                    "
                   >
                     <td v-html="item2.name" />
                     <template v-if="isSameValue(index, index1, index2)">
@@ -149,56 +204,65 @@ function isSameValue(index: number, index1: number, index2: number) {
                     </td>
                   </tr>
                 </template>
-                <tr v-else>
-                  <td v-html="item1.name" />
-                  <template v-if="isSameValue(index, index1)">
-                    <td :colspan="models.length">
-                      {{
-                        displayValue(models[0].children[index].children[index1])
-                      }}
-                    </td>
-                  </template>
-                  <td v-else v-for="(_, index2) in models.length" :key="index2">
+              </template>
+              <tr
+                v-else-if="!hiddenSameValueRow || !isSameValue(index, index1)"
+              >
+                <td v-html="item1.name" />
+                <template v-if="isSameValue(index, index1)">
+                  <td :colspan="models.length">
                     {{
-                      displayValue(
-                        models[index2].children[index].children[index1]
-                      )
+                      displayValue(models[0].children[index].children[index1])
                     }}
                   </td>
-                </tr>
-              </template>
+                </template>
+                <td v-else v-for="(_, index2) in models.length" :key="index2">
+                  {{
+                    displayValue(
+                      models[index2].children[index].children[index1]
+                    )
+                  }}
+                </td>
+              </tr>
             </template>
-          </tbody>
-        </table>
+          </template>
+        </tbody>
+      </table>
 
-        <div class="remarks">
-          <p>备注：</p>
-          <p>● 标准配置 ○ 选装配置 - 无此配置</p>
-          <p v-for="item in remarks" :key="item">{{ item }}</p>
-          <br /><br />
-          <p>
-            *全国建议零售价格仅针对私人购买，不含非私人购买或用于营运的车辆；
-          </p>
-          <p>
-            *车型配置信息仅适用于一定生产月内生产的相应车型，不同生产月内生产的车型配置信息亦可能不同。电池续航里程及充电时间仅供参考，受实际使用情况影响而变化。配置表仅作为参考，实际情况应以销售店实际销售车辆为准；
-          </p>
-          <p>*除特别标注外，表中性能参数值均在标准配置状态下测试得出；</p>
-          <p>
-            *智能辅助驾驶系统无法应对所有交通、天气与路况。驾驶员必须始终注意观察当前交通状况，如果智能辅助驾驶系统未能提供适当的转向辅助或者保持适当的车距与车速，则需要驾驶员主动干预。请阅读车主手册中有关此功能的所有章节，了解该功能的限制情况。驾驶员在使用功能前应意识到这些限制情况。在交通状况复杂多变、冰雪雨路面湿滑天气、道路积水或烂泥路面、能见度较差、崎岖山路或高速路入口出口等情况下，请谨慎使用。
-          </p>
-        </div>
+      <div class="remarks">
+        <p>备注：</p>
+        <p>● 标准配置 ○ 选装配置 - 无此配置</p>
+        <p v-for="item in remarks" :key="item">{{ item }}</p>
+        <br /><br />
+        <p>*全国建议零售价格仅针对私人购买，不含非私人购买或用于营运的车辆；</p>
+        <p>
+          *车型配置信息仅适用于一定生产月内生产的相应车型，不同生产月内生产的车型配置信息亦可能不同。电池续航里程及充电时间仅供参考，受实际使用情况影响而变化。配置表仅作为参考，实际情况应以销售店实际销售车辆为准；
+        </p>
+        <p>*除特别标注外，表中性能参数值均在标准配置状态下测试得出；</p>
+        <p>
+          *智能辅助驾驶系统无法应对所有交通、天气与路况。驾驶员必须始终注意观察当前交通状况，如果智能辅助驾驶系统未能提供适当的转向辅助或者保持适当的车距与车速，则需要驾驶员主动干预。请阅读车主手册中有关此功能的所有章节，了解该功能的限制情况。驾驶员在使用功能前应意识到这些限制情况。在交通状况复杂多变、冰雪雨路面湿滑天气、道路积水或烂泥路面、能见度较差、崎岖山路或高速路入口出口等情况下，请谨慎使用。
+        </p>
       </div>
     </div>
-  </div>
+  </template>
 </template>
 
 <style scoped>
-.container {
-  width: 80vw;
-  margin: auto;
+.header {
+  position: fixed;
+  top: 5.6rem;
+  left: 0;
+  right: 0;
+  z-index: 3;
+  background-color: #fff;
+
+  .wrapper {
+    width: 80%;
+    margin: auto;
+  }
 }
 
-.header {
+.top-bar {
   height: 5.4rem;
   display: flex;
   align-items: center;
@@ -242,91 +306,117 @@ function isSameValue(index: number, index1: number, index2: number) {
   display: flex;
   justify-content: flex-end;
   margin-top: 2.5rem;
+  padding-bottom: 1rem;
+
+  :is(input[type='checkbox']) {
+    width: 1.6rem;
+    height: 1.6rem;
+    border: 0.1rem solid #666;
+    border-radius: 0.2rem;
+    margin-right: 0.8rem;
+    appearance: none;
+
+    &:checked {
+      border: none;
+      background-image: url(data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAiIGhlaWdodD0iMjAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHJlY3Qgd2lkdGg9IjIwIiBoZWlnaHQ9IjIwIiByeD0iMiIgZmlsbD0iIzVBOTYwQSIgZmlsbC1vcGFjaXR5PSIuNyIvPjxwYXRoIGQ9Ik0xMy4zNTYgNy4yNjdhLjk4OC45ODggMCAwIDEgMS4zNy4wMThjLjM1LjM1LjM2NC44OTYuMDQ4IDEuMjYybC0uMDY3LjA3LTUuNDExIDUuMTE2YS45ODguOTg4IDAgMCAxLTEuMzUgMGwtLjA2Ny0uMDctMi42NTMtMy4wNzdhLjkyNC45MjQgMCAwIDEgLjEyLTEuMzI3Ljk4OS45ODkgMCAwIDEgMS4yOTcuMDQ2bC4wNjguMDcgMS45ODIgMi4zIDQuNjYzLTQuNDA4eiIgZmlsbD0iI2ZmZiIvPjwvc3ZnPg==);
+      background-size: contain;
+    }
+  }
 
   :is(label) {
     display: flex;
-    gap: 0.4rem;
+    align-items: center;
+    font-size: 1.4rem;
     cursor: pointer;
   }
 }
 
-.main {
-  display: flex;
+.navs {
+  position: fixed;
+  top: 16rem;
+  left: 10%;
+  margin-top: 6rem;
+  margin-left: 1.8rem;
 
-  .navs {
-    margin-top: 6rem;
-    margin-left: 1.8rem;
+  .nav-item {
+    display: block;
+    margin-bottom: 1.6rem;
+    color: #999;
+    font-size: 1.2rem;
+    padding-left: 1.2rem;
+    border-left: 0.2rem solid #fff;
 
-    .nav-item {
-      display: block;
-      margin-bottom: 1.6rem;
-      color: #999;
-      font-size: 1.2rem;
-      padding-left: 1.2rem;
-      border-left: 0.2rem solid #fff;
-
-      &.active {
-        color: #000;
-        border-color: var(--color-primary);
-      }
+    &.active {
+      color: #000;
+      border-color: var(--color-primary);
     }
   }
+}
 
-  .table-wrapper {
-    flex: 1;
-    padding-left: 12rem;
-  }
+.table-wrapper {
+  margin: 10.6rem 10% 10rem 24%;
+}
 
-  .table {
-    align-self: flex-start;
-    border-collapse: collapse;
+.table {
+  border-spacing: 0;
+  border-collapse: collapse;
 
-    :is(thead) :is(td) {
+  :is(thead) {
+    position: sticky;
+    top: 16.6rem;
+    z-index: 2;
+    background-color: #fff;
+
+    :is(td) {
       color: #303030;
       font-size: 1.8rem !important;
     }
+  }
 
-    :is(tr) {
-      &::after {
-        content: '';
-        position: absolute;
-        bottom: 0;
-        left: 0;
-        right: 0;
-        border-bottom: 1px solid #e6e6e8;
+  :is(tr) {
+    &::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      border-bottom: 1px solid #e6e6e8;
+    }
+
+    :is(td) {
+      padding: 1.2rem 2.4rem;
+      font-size: 1.4rem;
+      letter-spacing: 0.2rem;
+
+      &:not(:first-child) {
+        width: 40%;
+        text-align: center;
       }
+    }
+
+    &.price {
+      :is(td):not(:first-child) {
+        color: var(--color-primary);
+        font-size: 1.6rem;
+      }
+    }
+
+    &.title {
+      position: sticky;
+      top: 26.4rem;
+      z-index: 1;
+      height: 6rem;
+      background-color: #f8f8f8;
 
       :is(td) {
-        padding: 1.2rem 2.4rem;
-        font-size: 1.4rem;
-
-        &:not(:first-child) {
-          width: 40%;
-          text-align: center;
-        }
+        font-size: 1.8rem;
+        font-weight: 500;
       }
+    }
 
-      &.price {
-        :is(td):not(:first-child) {
-          color: var(--color-primary);
-          font-size: 1.6rem;
-        }
-      }
-
-      &.title {
-        height: 6rem;
-        background-color: #f8f8f8;
-
-        :is(td) {
-          font-size: 1.8rem;
-          font-weight: bold;
-        }
-      }
-
-      &.subtitle :is(td) {
-        font-size: 1.6rem;
-        font-weight: bold;
-      }
+    &.subtitle :is(td) {
+      font-size: 1.6rem;
+      font-weight: 500;
     }
   }
 }
