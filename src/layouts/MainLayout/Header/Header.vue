@@ -73,7 +73,7 @@ const isOtherPage = useIsOtherPage()
   position: sticky;
   top: 0;
   height: 5.6rem;
-  background-color: #666;
+  background: linear-gradient(135deg, #999, #666);
 }
 
 .header {
@@ -111,6 +111,10 @@ const isOtherPage = useIsOtherPage()
 }
 
 .actions {
+  .btn {
+    cursor: pointer;
+  }
+
   .btn-appointment {
     font-size: 1.4rem;
     height: unset;

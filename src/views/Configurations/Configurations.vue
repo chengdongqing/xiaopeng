@@ -1,95 +1,14 @@
 <script setup lang="ts">
-import useThrottle from '@/hooks/useThrottle.ts'
-import { capitalizeFirstLetter, formatAmount } from '@/utils'
-import { computed, onMounted, onUnmounted, ref, watch } from 'vue'
-import { useRoute } from 'vue-router'
-import { ConfigurationProps } from './index.ts'
+import { capitalizeFirstLetter } from '@/utils'
+import { ref } from 'vue'
+import ConfigsTable from './ConfigsTable.vue'
+import { useActiveNav, useConfigurations } from './helpers.ts'
 
-const configurations = ref<ConfigurationProps[]>([])
-const remarks = ref<string[]>([])
 const current = ref(0)
-
-const { params } = useRoute()
-const id = params.id as string
-const path = `./configs/${id}.ts`
-import(path).then((res) => {
-  configurations.value = res.configs
-  remarks.value = res.remarks
-})
-
-const models = computed(() => {
-  return configurations.value[current.value]?.children
-})
-
-function displayValue({
-  value,
-  optional
-}: {
-  value: string | boolean
-  optional: boolean | number
-}) {
-  if (typeof value === 'string') {
-    return value
-  }
-  if (value) {
-    return '●'
-  }
-  if (!value && optional) {
-    if (typeof optional === 'number') {
-      return `○+${optional}`
-    }
-    return '○'
-  }
-  return '—'
-}
-
 const hiddenSameValueRow = ref(false)
 
-function isSameValue(index: number, index1: number, index2?: number) {
-  if (models.value?.length <= 1) return false
-
-  const arr: any[] =
-    models.value?.map((item) => {
-      return index2 === undefined
-        ? item.children[index].children[index1]
-        : item.children[index].children[index1].children[index2]
-    }) || []
-
-  if (typeof arr[0].value === 'boolean' && !hiddenSameValueRow.value) {
-    return false
-  }
-  return arr?.every((item: any) => item.value === arr[0].value)
-}
-
-const rows = ref<HTMLTableRowElement[]>([])
-const activeNav = ref(0)
-
-watch(
-  () => configurations.value,
-  () => {
-    setTimeout(() => {
-      rows.value = Array.from(document.querySelectorAll('.table .title'))
-    }, 1000)
-  }
-)
-
-const onPageScroll = useThrottle(() => {
-  rows.value.forEach((item, index) => {
-    if (
-      document.documentElement.scrollTop >=
-      (item as HTMLTableRowElement).offsetTop
-    ) {
-      activeNav.value = index
-    }
-  })
-})
-
-onMounted(() => {
-  window.addEventListener('scroll', onPageScroll)
-})
-onUnmounted(() => {
-  window.removeEventListener('scroll', onPageScroll)
-})
+const { id, configs, remarks, models } = useConfigurations(current)
+const activeNav = useActiveNav(configs)
 </script>
 
 <template>
@@ -103,7 +22,7 @@ onUnmounted(() => {
           <div
             class="model-item"
             :class="{ active: index === current }"
-            v-for="(item, index) in configurations"
+            v-for="(item, index) in configs"
             :key="item.modelName"
             @click="current = index"
           >
@@ -136,99 +55,10 @@ onUnmounted(() => {
     </div>
 
     <div class="table-wrapper">
-      <table class="table">
-        <thead>
-          <tr>
-            <td />
-            <td v-for="item in models" :key="item.subModelName">
-              {{ item.subModelName }}
-            </td>
-          </tr>
-          <tr class="price">
-            <td>全国建议零售价</td>
-            <td v-for="item in models" :key="item.subModelName">
-              ¥{{ formatAmount(item.price) }}
-            </td>
-          </tr>
-        </thead>
-        <tbody>
-          <template
-            v-for="(item, index) in models[0].children"
-            :key="item.title"
-          >
-            <tr class="title">
-              <td :colspan="models.length + 1">
-                {{ item.title }} <b :id="item.title" style="top: -28rem" />
-              </td>
-            </tr>
-            <template
-              v-for="(item1, index1) in item.children"
-              :key="item1.title || item1.name"
-            >
-              <template v-if="item1.children">
-                <tr class="subtitle">
-                  <td :colspan="models.length + 1">{{ item1.title }}</td>
-                </tr>
-                <template
-                  v-for="(item2, index2) in item1.children"
-                  :key="item2.name"
-                >
-                  <tr
-                    v-if="
-                      !hiddenSameValueRow || !isSameValue(index, index1, index2)
-                    "
-                  >
-                    <td v-html="item2.name" />
-                    <template v-if="isSameValue(index, index1, index2)">
-                      <td :colspan="models.length">
-                        {{
-                          displayValue(
-                            models[0].children[index].children[index1].children[
-                              index2
-                            ]
-                          )
-                        }}
-                      </td>
-                    </template>
-                    <td
-                      v-else
-                      v-for="(_, index3) in models.length"
-                      :key="index3"
-                    >
-                      {{
-                        displayValue(
-                          models[index3].children[index].children[index1]
-                            .children[index2]
-                        )
-                      }}
-                    </td>
-                  </tr>
-                </template>
-              </template>
-              <tr
-                v-else-if="!hiddenSameValueRow || !isSameValue(index, index1)"
-              >
-                <td v-html="item1.name" />
-                <template v-if="isSameValue(index, index1)">
-                  <td :colspan="models.length">
-                    {{
-                      displayValue(models[0].children[index].children[index1])
-                    }}
-                  </td>
-                </template>
-                <td v-else v-for="(_, index2) in models.length" :key="index2">
-                  {{
-                    displayValue(
-                      models[index2].children[index].children[index1]
-                    )
-                  }}
-                </td>
-              </tr>
-            </template>
-          </template>
-        </tbody>
-      </table>
-
+      <ConfigsTable
+        :models="models"
+        :hidden-same-value-row="hiddenSameValueRow"
+      />
       <div class="remarks">
         <p>备注：</p>
         <p>● 标准配置 ○ 选装配置 - 无此配置</p>
@@ -355,70 +185,6 @@ onUnmounted(() => {
 
 .table-wrapper {
   margin: 10.6rem 10% 10rem 24%;
-}
-
-.table {
-  border-spacing: 0;
-  border-collapse: collapse;
-
-  :is(thead) {
-    position: sticky;
-    top: 16.6rem;
-    z-index: 2;
-    background-color: #fff;
-
-    :is(td) {
-      color: #303030;
-      font-size: 1.8rem !important;
-    }
-  }
-
-  :is(tr) {
-    &::after {
-      content: '';
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      right: 0;
-      border-bottom: 1px solid #e6e6e8;
-    }
-
-    :is(td) {
-      padding: 1.2rem 2.4rem;
-      font-size: 1.4rem;
-      letter-spacing: 0.2rem;
-
-      &:not(:first-child) {
-        width: 40%;
-        text-align: center;
-      }
-    }
-
-    &.price {
-      :is(td):not(:first-child) {
-        color: var(--color-primary);
-        font-size: 1.6rem;
-      }
-    }
-
-    &.title {
-      position: sticky;
-      top: 26.4rem;
-      z-index: 1;
-      height: 6rem;
-      background-color: #f8f8f8;
-
-      :is(td) {
-        font-size: 1.8rem;
-        font-weight: 500;
-      }
-    }
-
-    &.subtitle :is(td) {
-      font-size: 1.6rem;
-      font-weight: 500;
-    }
-  }
 }
 
 .remarks {

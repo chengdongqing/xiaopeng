@@ -1,4 +1,4 @@
-import { ConfigurationProps } from '../index.ts'
+import { ConfigurationProps } from '../index'
 
 export const configs: ConfigurationProps[] = [
   {
@@ -12,32 +12,36 @@ export const configs: ConfigurationProps[] = [
             title: '基础信息',
             children: [
               {
-                name: '长/宽/高（mm）',
-                value: '4753/1920/1650'
-              },
-              {
-                name: '轴距（mm）',
-                value: '2890'
-              },
-              {
-                name: 'CLTC综合工况续航里程（km）<sup>1</sup>',
-                value: '580'
-              },
-              {
-                name: '电池类型',
-                value: '液冷恒温无热蔓延磷酸铁锂电池包（IP68级防尘防水）'
-              },
-              {
-                name: '直流快充时间（SOC 10%充至80%）<sup>2</sup>',
-                value: '≥20min（最快20min）'
-              },
-              {
-                name: '综合工况电能消耗量（kWh/100km）',
-                value: '13.2'
-              },
-              {
-                name: 'V2L对外放电功能（220V电源输出）<sup>3</sup>',
-                value: true
+                children: [
+                  {
+                    name: '长/宽/高（mm）',
+                    value: '4753/1920/1650'
+                  },
+                  {
+                    name: '轴距（mm）',
+                    value: '2890'
+                  },
+                  {
+                    name: 'CLTC综合工况续航里程（km）<sup>1</sup>',
+                    value: '580'
+                  },
+                  {
+                    name: '电池类型',
+                    value: '液冷恒温无热蔓延磷酸铁锂电池包（IP68级防尘防水）'
+                  },
+                  {
+                    name: '直流快充时间（SOC 10%充至80%）<sup>2</sup>',
+                    value: '≥20min（最快20min）'
+                  },
+                  {
+                    name: '综合工况电能消耗量（kWh/100km）',
+                    value: '13.2'
+                  },
+                  {
+                    name: 'V2L对外放电功能（220V电源输出）<sup>3</sup>',
+                    value: true
+                  }
+                ]
               }
             ]
           },
@@ -337,32 +341,36 @@ export const configs: ConfigurationProps[] = [
             title: '基础信息',
             children: [
               {
-                name: '长/宽/高（mm）',
-                value: '4753/1920/1650'
-              },
-              {
-                name: '轴距（mm）',
-                value: '2890'
-              },
-              {
-                name: 'CLTC综合工况续航里程（km）<sup>1</sup>',
-                value: '580'
-              },
-              {
-                name: '电池类型',
-                value: '液冷恒温无热蔓延磷酸铁锂电池包（IP68级防尘防水）'
-              },
-              {
-                name: '直流快充时间（SOC 10%充至80%）<sup>2</sup>',
-                value: '≥20min（最快20min）'
-              },
-              {
-                name: '综合工况电能消耗量（kWh/100km）',
-                value: '13.2'
-              },
-              {
-                name: 'V2L对外放电功能（220V电源输出）<sup>3</sup>',
-                value: true
+                children: [
+                  {
+                    name: '长/宽/高（mm）',
+                    value: '4753/1920/1650'
+                  },
+                  {
+                    name: '轴距（mm）',
+                    value: '2890'
+                  },
+                  {
+                    name: 'CLTC综合工况续航里程（km）<sup>1</sup>',
+                    value: '580'
+                  },
+                  {
+                    name: '电池类型',
+                    value: '液冷恒温无热蔓延磷酸铁锂电池包（IP68级防尘防水）'
+                  },
+                  {
+                    name: '直流快充时间（SOC 10%充至80%）<sup>2</sup>',
+                    value: '≥20min（最快20min）'
+                  },
+                  {
+                    name: '综合工况电能消耗量（kWh/100km）',
+                    value: '13.2'
+                  },
+                  {
+                    name: 'V2L对外放电功能（220V电源输出）<sup>3</sup>',
+                    value: true
+                  }
+                ]
               }
             ]
           },
@@ -667,32 +675,36 @@ export const configs: ConfigurationProps[] = [
             title: '基础信息',
             children: [
               {
-                name: '长/宽/高（mm）',
-                value: '4753/1920/1650'
-              },
-              {
-                name: '轴距（mm）',
-                value: '2890'
-              },
-              {
-                name: 'CLTC综合工况续航里程（km）<sup>1</sup>',
-                value: '755'
-              },
-              {
-                name: '电池类型',
-                value: '液冷恒温无热蔓延三元电池包（IP68级防尘防水）'
-              },
-              {
-                name: '直流快充时间（SOC 10%充至80%）<sup>2</sup>',
-                value: '≥20min（最快20min）'
-              },
-              {
-                name: '综合工况电能消耗量（kWh/100km）',
-                value: '13.2'
-              },
-              {
-                name: 'V2L对外放电功能（220V电源输出）<sup>3</sup>',
-                value: true
+                children: [
+                  {
+                    name: '长/宽/高（mm）',
+                    value: '4753/1920/1650'
+                  },
+                  {
+                    name: '轴距（mm）',
+                    value: '2890'
+                  },
+                  {
+                    name: 'CLTC综合工况续航里程（km）<sup>1</sup>',
+                    value: '755'
+                  },
+                  {
+                    name: '电池类型',
+                    value: '液冷恒温无热蔓延三元电池包（IP68级防尘防水）'
+                  },
+                  {
+                    name: '直流快充时间（SOC 10%充至80%）<sup>2</sup>',
+                    value: '≥20min（最快20min）'
+                  },
+                  {
+                    name: '综合工况电能消耗量（kWh/100km）',
+                    value: '13.2'
+                  },
+                  {
+                    name: 'V2L对外放电功能（220V电源输出）<sup>3</sup>',
+                    value: true
+                  }
+                ]
               }
             ]
           },
@@ -992,32 +1004,36 @@ export const configs: ConfigurationProps[] = [
             title: '基础信息',
             children: [
               {
-                name: '长/宽/高（mm）',
-                value: '4753/1920/1650'
-              },
-              {
-                name: '轴距（mm）',
-                value: '2890'
-              },
-              {
-                name: 'CLTC综合工况续航里程（km）<sup>1</sup>',
-                value: '755'
-              },
-              {
-                name: '电池类型',
-                value: '液冷恒温无热蔓延三元电池包（IP68级防尘防水）'
-              },
-              {
-                name: '直流快充时间（SOC 10%充至80%）<sup>2</sup>',
-                value: '≥20min（最快20min）'
-              },
-              {
-                name: '综合工况电能消耗量（kWh/100km）',
-                value: '13.2'
-              },
-              {
-                name: 'V2L对外放电功能（220V电源输出）<sup>3</sup>',
-                value: true
+                children: [
+                  {
+                    name: '长/宽/高（mm）',
+                    value: '4753/1920/1650'
+                  },
+                  {
+                    name: '轴距（mm）',
+                    value: '2890'
+                  },
+                  {
+                    name: 'CLTC综合工况续航里程（km）<sup>1</sup>',
+                    value: '755'
+                  },
+                  {
+                    name: '电池类型',
+                    value: '液冷恒温无热蔓延三元电池包（IP68级防尘防水）'
+                  },
+                  {
+                    name: '直流快充时间（SOC 10%充至80%）<sup>2</sup>',
+                    value: '≥20min（最快20min）'
+                  },
+                  {
+                    name: '综合工况电能消耗量（kWh/100km）',
+                    value: '13.2'
+                  },
+                  {
+                    name: 'V2L对外放电功能（220V电源输出）<sup>3</sup>',
+                    value: true
+                  }
+                ]
               }
             ]
           },
@@ -1322,32 +1338,36 @@ export const configs: ConfigurationProps[] = [
             title: '基础信息',
             children: [
               {
-                name: '长/宽/高（mm）',
-                value: '4753/1920/1650'
-              },
-              {
-                name: '轴距（mm）',
-                value: '2890'
-              },
-              {
-                name: 'CLTC综合工况续航里程（km）<sup>1</sup>',
-                value: '700'
-              },
-              {
-                name: '电池类型',
-                value: '液冷恒温无热蔓延三元电池包（IP68级防尘防水）'
-              },
-              {
-                name: '直流快充时间（SOC 10%充至80%）<sup>2</sup>',
-                value: '≥20min（最快20min）'
-              },
-              {
-                name: '综合工况电能消耗量（kWh/100km）',
-                value: '14.1'
-              },
-              {
-                name: 'V2L对外放电功能（220V电源输出）<sup>3</sup>',
-                value: true
+                children: [
+                  {
+                    name: '长/宽/高（mm）',
+                    value: '4753/1920/1650'
+                  },
+                  {
+                    name: '轴距（mm）',
+                    value: '2890'
+                  },
+                  {
+                    name: 'CLTC综合工况续航里程（km）<sup>1</sup>',
+                    value: '700'
+                  },
+                  {
+                    name: '电池类型',
+                    value: '液冷恒温无热蔓延三元电池包（IP68级防尘防水）'
+                  },
+                  {
+                    name: '直流快充时间（SOC 10%充至80%）<sup>2</sup>',
+                    value: '≥20min（最快20min）'
+                  },
+                  {
+                    name: '综合工况电能消耗量（kWh/100km）',
+                    value: '14.1'
+                  },
+                  {
+                    name: 'V2L对外放电功能（220V电源输出）<sup>3</sup>',
+                    value: true
+                  }
+                ]
               }
             ]
           },
