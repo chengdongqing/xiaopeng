@@ -4,14 +4,15 @@ import Logo from '@/components/Icons/Logo.vue'
 import { menus, subMenus } from '../const.ts'
 import CarAnimationIcon from './CarAnimationIcon.vue'
 import CarItems from './CarItems.vue'
-import useCarVisible from './useCarVisible.ts'
-import useDarkTheme from './useDarkTheme.ts'
+import { useCarVisible, useDarkTheme, useIsOtherPage } from './helpers.ts'
 
 const [isCarsVisible, onVisibleChange] = useCarVisible()
 const isDarkTheme = useDarkTheme(isCarsVisible)
+const isOtherPage = useIsOtherPage()
 </script>
 
 <template>
+  <div class="header-background" v-if="isOtherPage" />
   <div
     class="header"
     :class="{ 'dark-theme': isDarkTheme, 'cars-visible': isCarsVisible }"
@@ -67,6 +68,14 @@ const isDarkTheme = useDarkTheme(isCarsVisible)
 </template>
 
 <style scoped>
+.header-background {
+  z-index: 10;
+  position: sticky;
+  top: 0;
+  height: 5.6rem;
+  background-color: #999;
+}
+
 .header {
   position: fixed;
   top: 0;
