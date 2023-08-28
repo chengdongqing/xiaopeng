@@ -1,9 +1,15 @@
 <script setup lang="ts">
+import { computed } from 'vue'
+import { useRoute } from 'vue-router'
 import { footerLinks } from './const.ts'
+
+const route = useRoute()
+const paths = ['/stores']
+const visible = computed(() => !paths.includes(route.path))
 </script>
 
 <template>
-  <div class="footer">
+  <div class="footer" v-if="visible">
     <div>
       <div class="website-list">
         <a

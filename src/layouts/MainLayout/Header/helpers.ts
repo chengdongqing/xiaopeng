@@ -25,13 +25,17 @@ export function useDarkTheme(isCarsVisible: Ref<boolean>) {
   const route = useRoute()
 
   return computed(() => {
-    return isCarsVisible.value || (route.path === '/' && isScrolled.value)
+    return (
+      isCarsVisible.value ||
+      (route.path === '/' && isScrolled.value) ||
+      route.path === '/stores'
+    )
   })
 }
 
 export function useIsOtherPage() {
   const route = useRoute()
-  const paths = ['', 'g6', 'p7i', 'g9', 'p7', 'p5', 'g3i'].map((item) => {
+  const paths = ['', 'g6', 'p7i', 'g9', 'p7', 'p5', 'g3i', 'stores'].map((item) => {
     return `/${item}`
   })
 

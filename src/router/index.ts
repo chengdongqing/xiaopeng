@@ -60,6 +60,10 @@ const router = createRouter({
         {
           path: '/configurations/:id',
           component: () => import('@/views/Configurations/Configurations.vue')
+        },
+        {
+          path: '/stores',
+          component: () => import('@/views/Stores/Stores.vue')
         }
       ]
     }

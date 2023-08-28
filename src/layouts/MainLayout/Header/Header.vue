@@ -34,9 +34,9 @@ const isOtherPage = useIsOtherPage()
         <a class="menu-item">车型</a>
       </div>
       <div class="menu-item-wrapper" v-for="item in menus" :key="item.name">
-        <a class="menu-item" :href="item.href" target="_blank">
+        <RouterLink class="menu-item" :to="item.href">
           {{ item.name }}
-        </a>
+        </RouterLink>
       </div>
       <div class="menu-item-wrapper about-us">
         <a class="menu-item">关于我们</a>

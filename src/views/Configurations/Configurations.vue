@@ -9,6 +9,9 @@ const hiddenSameValueRow = ref(false)
 
 const { id, configs, remarks, models } = useConfigurations(current)
 const activeNav = useActiveNav(configs)
+
+const name = capitalizeFirstLetter(id)
+document.title = `小鹏${name}参数配置、小鹏${name}内饰、多少钱 | 小鹏汽车`
 </script>
 
 <template>
@@ -16,7 +19,7 @@ const activeNav = useActiveNav(configs)
     <div class="wrapper">
       <div class="top-bar">
         <div class="title">
-          <span>{{ capitalizeFirstLetter(id) }}</span> 配置表
+          <span>{{ name }}</span> 配置表
         </div>
         <div class="models">
           <div
