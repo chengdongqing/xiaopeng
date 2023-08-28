@@ -148,6 +148,7 @@ document.title = `小鹏${name}参数配置、小鹏${name}内饰、多少钱 | 
     border-radius: 0.2rem;
     margin-right: 0.8rem;
     appearance: none;
+    cursor: pointer;
 
     &:checked {
       border: none;

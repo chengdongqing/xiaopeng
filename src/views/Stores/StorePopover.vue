@@ -81,6 +81,7 @@ function formatTime(value: string) {
   margin-bottom: 1rem;
   background-color: #fff;
   border-radius: 0.6rem;
+  transform: translate(1.4rem, -4.8rem);
   box-shadow: 0 0.2rem 0.7rem 0 rgba(0, 0, 0, 0.32);
 
   &::after {
@@ -92,7 +93,7 @@ function formatTime(value: string) {
     left: 50%;
     border-radius: 0.2rem;
     background-color: #fff;
-    box-shadow: 2px 2px 5px -4px #000;
+    box-shadow: 0.2rem 0.2rem 0.5rem -0.4rem #000;
     transform: translate(-50%, 0.6rem) rotate(55deg) skew(20deg);
   }
 

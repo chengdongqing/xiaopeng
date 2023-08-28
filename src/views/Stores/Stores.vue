@@ -11,8 +11,7 @@ watch(
   (map) => {
     const infoWindow = new window.AMap.InfoWindow({
       isCustom: true,
-      closeWhenClickMap: true,
-      offset: new window.AMap.Pixel(13, -48)
+      closeWhenClickMap: true
     })
 
     const markers = stores.map((item) => {

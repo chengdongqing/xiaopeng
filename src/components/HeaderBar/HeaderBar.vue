@@ -25,11 +25,7 @@ const visible = usePageScrolled()
     </div>
 
     <div class="side">
-      <RouterLink
-        :to="`/configurations/${id}`"
-        target="_blank"
-        class="configuration"
-      >
+      <RouterLink :to="`/configurations/${id}`" class="configuration">
         参数配置
       </RouterLink>
       <Button class="btn">立即订购</Button>

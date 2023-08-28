@@ -175,6 +175,7 @@ function handleCarChange(e: Event) {
         border-radius: 50%;
         margin-right: 0.8rem;
         appearance: none;
+        cursor: pointer;
 
         &:checked {
           border: none;

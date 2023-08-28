@@ -17,13 +17,9 @@ import TitleBar from '@/components/TitleBar/TitleBar.vue'
         subtitle="小鹏门店为您提供便捷、舒适的购车及售后体验"
         color="#fff"
       >
-        <a
-          class="btn-wrapper"
-          href="https://www.xiaopeng.com/pengmetta.html"
-          target="_blank"
-        >
-          <Button color="#fff" arrow arrow-color="#fff"> 查看全国门店</Button>
-        </a>
+        <RouterLink to="/stores" class="btn-wrapper">
+          <Button color="#fff" arrow arrow-color="#fff">查看全国门店</Button>
+        </RouterLink>
       </TitleBar>
     </div>
   </div>
