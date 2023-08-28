@@ -51,8 +51,14 @@ function formatTime(value: string) {
           {{ formatTime(weekendBusinessHours) }} (周末)
         </div>
         <div class="info">
-          <span v-if="telephone">销售热线：{{ telephone }}</span>
-          <span v-if="serviceTelephone">服务热线：{{ serviceTelephone }}</span>
+          <span v-if="telephone">
+            销售热线：<a :href="`tel:${telephone}`">{{ telephone }}</a>
+          </span>
+          <span v-if="serviceTelephone">
+            服务热线：<a :href="`tel:${serviceTelephone}`">{{
+              serviceTelephone
+            }}</a>
+          </span>
         </div>
         <div class="labels">
           <div class="label opening-soon" v-if="isOpeningSoon" />
@@ -136,8 +142,17 @@ function formatTime(value: string) {
   }
 
   .info {
-    color: #787878;
-    font-size: 1.2rem;
+    &,
+    :is(span) {
+      color: #787878;
+      font-size: 1.2rem;
+      user-select: text;
+      cursor: text;
+    }
+
+    :is(span) {
+      margin-right: 0.2rem;
+    }
   }
 
   .labels {
