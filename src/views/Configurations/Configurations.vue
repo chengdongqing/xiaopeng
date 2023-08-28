@@ -184,11 +184,13 @@ const activeNav = useActiveNav(configs)
 }
 
 .table-wrapper {
+  display: flex;
+  flex-direction: column;
   margin: 10.6rem 10% 10rem 24%;
 }
 
 .remarks {
-  margin: 6rem 0 8rem;
+  margin-top: 6rem;
   font-size: 1.4rem;
 }
 </style>

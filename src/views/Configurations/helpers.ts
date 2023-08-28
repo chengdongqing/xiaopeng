@@ -102,5 +102,10 @@ export function isSameValue(
   if (typeof arr[0].value === 'boolean' && !hiddenSameValueRow) {
     return false
   }
-  return arr.every((item: any) => item.value === arr[0].value)
+  return arr.every((item: any) => {
+    return (
+      item.value === arr[0].value &&
+      (typeof item.value !== 'boolean' || item.optional === arr[0].optional)
+    )
+  })
 }
