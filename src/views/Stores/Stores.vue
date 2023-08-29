@@ -100,5 +100,13 @@ watch(
     transform: translateX(-0.9rem) translateY(-2.5rem);
     background-image: url(https://xps01.xiaopeng.com/www/public/img/store-active-icon.f19a706f.png);
   }
+
+  :deep(.amap-info) {
+    transform: translate(1.4rem, -6.8rem);
+  }
+
+  :deep(.amap-info-contentContainer).bottom-center {
+    padding-bottom: 0;
+  }
 }
 </style>

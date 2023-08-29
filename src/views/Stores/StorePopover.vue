@@ -78,10 +78,8 @@ function formatTime(value: string) {
 .container {
   width: 75rem;
   padding: 2rem;
-  margin-bottom: 1rem;
   background-color: #fff;
   border-radius: 0.6rem;
-  transform: translate(1.4rem, -4.8rem);
   box-shadow: 0 0.2rem 0.7rem 0 rgba(0, 0, 0, 0.32);
 
   &::after {
