@@ -51,29 +51,17 @@ export function useIndexSwitch(
   resetPlay: () => void
 ) {
   function toNext(clearTimer = true) {
-    if (clearTimer) {
-      resetPlay()
-    }
+    clearTimer && resetPlay()
 
     isNext.value = true
-    if (current.value < count.value - 1) {
-      current.value++
-    } else {
-      current.value = 0
-    }
+    current.value = (current.value + 1) % count.value
   }
 
   function toPrev(clearTimer = true) {
-    if (clearTimer) {
-      resetPlay()
-    }
+    clearTimer && resetPlay()
 
     isNext.value = false
-    if (current.value > 0) {
-      current.value--
-    } else {
-      current.value = count.value - 1
-    }
+    current.value = (current.value - 1 + count.value) % count.value
   }
 
   function goTo(index: number) {
