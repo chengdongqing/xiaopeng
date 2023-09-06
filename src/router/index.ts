@@ -66,6 +66,10 @@ const router = createRouter({
           component: () => import('@/views/Stores/Stores.vue')
         }
       ]
+    },
+    {
+      path: '/:pathMatch(.*)*',
+      redirect: '/'
     }
   ],
   scrollBehavior() {

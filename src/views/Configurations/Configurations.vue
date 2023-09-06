@@ -55,6 +55,8 @@ document.title = `小鹏${name}参数配置、小鹏${name}内饰、多少钱 | 
       >
         {{ item.title }}
       </a>
+
+      <i class="slide" :style="{ top: `calc(${activeNav} * 3.4rem` }" />
     </div>
 
     <div class="table-wrapper">
@@ -171,19 +173,26 @@ document.title = `小鹏${name}参数配置、小鹏${name}内饰、多少钱 | 
   left: 10%;
   margin-top: 6rem;
   margin-left: 1.8rem;
+  border-left: 0.2rem solid rgba(0, 0, 0, 0.05);
 
   .nav-item {
     display: block;
-    margin-bottom: 1.6rem;
     color: #999;
     font-size: 1.2rem;
-    padding-left: 1.2rem;
-    border-left: 0.2rem solid #fff;
+    padding: 0.8rem 1.2rem;
 
     &.active {
       color: #000;
-      border-color: var(--color-primary);
     }
+  }
+
+  .slide {
+    position: absolute;
+    left: -0.2rem;
+    width: 0.2rem;
+    height: 3.4rem;
+    background-color: var(--color-primary);
+    transition: top 0.2s ease;
   }
 }
 

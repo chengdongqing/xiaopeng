@@ -4,14 +4,14 @@ import { useRoute } from 'vue-router'
 
 export function useCarVisible() {
   const isCarsVisible = ref(false)
-  const timer = ref<NodeJS.Timer>()
+  let timer: NodeJS.Timeout
 
   function handleVisibleChange(visible = true) {
     if (visible) {
-      clearTimeout(timer.value)
+      clearTimeout(timer)
       isCarsVisible.value = true
     } else {
-      timer.value = setTimeout(() => {
+      timer = setTimeout(() => {
         isCarsVisible.value = false
       }, 100)
     }
@@ -35,9 +35,11 @@ export function useDarkTheme(isCarsVisible: Ref<boolean>) {
 
 export function useIsOtherPage() {
   const route = useRoute()
-  const paths = ['', 'g6', 'p7i', 'g9', 'p7', 'p5', 'g3i', 'stores'].map((item) => {
-    return `/${item}`
-  })
+  const paths = ['', 'g6', 'p7i', 'g9', 'p7', 'p5', 'g3i', 'stores'].map(
+    (item) => {
+      return `/${item}`
+    }
+  )
 
   return computed(() => {
     return !paths.includes(route.path)

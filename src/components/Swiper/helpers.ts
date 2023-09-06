@@ -5,7 +5,7 @@ export function useSwiperPlay(
   props: SwiperProps,
   toNext: (clearTime: boolean) => void
 ) {
-  let timer: NodeJS.Timer
+  let timer: NodeJS.Timeout
 
   function startPlay() {
     if (props.autoplay) {

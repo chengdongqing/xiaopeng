@@ -1,18 +1,22 @@
 import useThrottle from '@/hooks/useThrottle.ts'
 import { computed, onMounted, onUnmounted, Ref, ref, watch } from 'vue'
-import { useRoute } from 'vue-router'
+import { useRoute, useRouter } from 'vue-router'
 import { ConfigurationProps, ModelItemProps } from './index'
 
 export function useConfigurations(current: Ref<number>) {
   const configs = ref<ConfigurationProps[]>([])
   const remarks = ref<string[]>([])
 
+  const router = useRouter()
   const { params } = useRoute()
+
   const id = params.id as string
-  import(`./configs/${id}.ts`).then((res) => {
-    configs.value = res.configs
-    remarks.value = res.remarks
-  })
+  import(`./configs/${id}.ts`)
+    .then((res) => {
+      configs.value = res.configs
+      remarks.value = res.remarks
+    })
+    .catch(() => router.replace('/'))
 
   const models = computed(() => {
     return configs.value[current.value]?.children
