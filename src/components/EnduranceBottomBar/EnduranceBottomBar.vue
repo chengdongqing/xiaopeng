@@ -1,4 +1,4 @@
-<script setup lang='ts'>
+<script setup lang="ts">
 import Button from '@/components/Button/Button.vue'
 import NameValueGroup from '@/components/NameValueGroup/NameValueGroup.vue'
 
@@ -13,13 +13,13 @@ defineProps<{
 </script>
 
 <template>
-  <div class='endurance-bottom-bar'>
-    <NameValueGroup :options='options' class='left' />
-    <div class='right'>
-      <RouterLink :to='`/configurations/${name.toLowerCase()}`'>
-        <Button arrow color='#fff' arrow-color='#fff'>{{ name }}配置表</Button>
+  <div class="endurance-bottom-bar">
+    <NameValueGroup :options="options" class="left" />
+    <div class="right">
+      <RouterLink :to="`/configurations/${name.toLowerCase()}`">
+        <Button arrow color="#fff" arrow-color="#fff">{{ name }}配置表</Button>
       </RouterLink>
-      <Button arrow class='btn-right'>里程计算器</Button>
+      <Button arrow class="btn-right">里程计算器</Button>
     </div>
   </div>
 </template>
