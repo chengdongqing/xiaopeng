@@ -50,38 +50,50 @@ export const subMenus = [
 
 export const carItems = [
   {
+    id: 'g92024',
+    name: '2024款G9',
+    imageUrl:
+      'https://xps01.xiaopeng.com/cms/material/pic/2023/09-19/pic_20230919164412_75046.png'
+  },
+  {
+    id: 'p52024',
+    name: '2024款P5',
+    imageUrl:
+      'https://xps01.xiaopeng.com/cms/material/pic/2023/09-24/pic_20230924150408_94553.png'
+  },
+  {
+    id: 'g6',
     name: 'G6',
-    href: '/g6',
     imageUrl:
       'https://xps01.xiaopeng.com/cms/material/pic/2023/06-05/pic_20230605100914_45631.png'
   },
   {
+    id: 'p7i',
     name: 'P7i',
-    href: '/p7i',
     imageUrl:
       'https://s.xiaopeng.com/xp-fe/mainsite/2023/components/header/P7i.png'
   },
   {
+    id: 'g9',
     name: 'G9',
-    href: '/g9',
     imageUrl:
       'https://s.xiaopeng.com/xp-fe/mainsite/2023/components/header/G9.png'
   },
   {
+    id: 'p7',
     name: 'P7',
-    href: '/p7',
     imageUrl:
       'https://s.xiaopeng.com/xp-fe/mainsite/2023/components/header/P7.png'
   },
   {
+    id: 'p5',
     name: 'P5',
-    href: '/p5',
     imageUrl:
       'https://s.xiaopeng.com/xp-fe/mainsite/2023/components/header/P5.png'
   },
   {
+    id: 'g3i',
     name: 'G3i',
-    href: '/g3i',
     imageUrl:
       'https://s.xiaopeng.com/xp-fe/mainsite/2023/components/header/G3i.png'
   }

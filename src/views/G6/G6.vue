@@ -46,6 +46,7 @@ import SectionSmart from './SectionSmart/SectionSmart.vue'
   />
 
   <ColorfulShowcase
+    id="g6"
     name="G6"
     title="点亮全新色彩，探索不同"
     subtitle="色彩灵感来源富有探索精神的宽广宇宙和自然景观"

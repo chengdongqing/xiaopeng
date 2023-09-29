@@ -4,9 +4,10 @@ import TitleBar from '@/components/TitleBar/TitleBar.vue'
 import { ref } from 'vue'
 
 defineProps<{
+  id: string
   name: string
   title: string
-  subtitle: string
+  subtitle?: string
   nameIconUrl: string
   options: {
     name: string

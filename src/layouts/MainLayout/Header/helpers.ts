@@ -35,11 +35,20 @@ export function useDarkTheme(isCarsVisible: Ref<boolean>) {
 
 export function useIsOtherPage() {
   const route = useRoute()
-  const paths = ['', 'g6', 'p7i', 'g9', 'p7', 'p5', 'g3i', 'stores'].map(
-    (item) => {
-      return `/${item}`
-    }
-  )
+  const paths = [
+    '',
+    'g92024',
+    'p52024',
+    'g6',
+    'p7i',
+    'g9',
+    'p7',
+    'p5',
+    'g3i',
+    'stores'
+  ].map((item) => {
+    return `/${item}`
+  })
 
   return computed(() => {
     return !paths.includes(route.path)

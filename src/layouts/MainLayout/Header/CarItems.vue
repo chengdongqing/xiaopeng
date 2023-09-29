@@ -13,7 +13,7 @@ defineProps<{
         class="car-item"
         v-for="item in carItems"
         :key="item.name"
-        :to="item.href"
+        :to="`/${item.id}`"
       >
         <img :src="item.imageUrl" :alt="item.name" class="image" />
         <div class="name">{{ item.name }}</div>

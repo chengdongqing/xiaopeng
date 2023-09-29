@@ -52,6 +52,7 @@ import {
   </div>
 
   <ColorfulShowcase
+    id="p7i"
     name="P7i"
     title="星际绿/新月银外观新色"
     subtitle="灵感来自浩瀚宇宙，凸显先锋探索品质"

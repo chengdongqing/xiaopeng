@@ -8,6 +8,7 @@ import cars from './cars.ts'
 
 const current = ref(0)
 const swiperRef = ref()
+const videoRefs = ref<HTMLVideoElement[]>(Array(cars.length))
 </script>
 
 <template>
@@ -17,15 +18,37 @@ const swiperRef = ref()
       :interval="8000"
       :pause-on-hover="false"
       style="height: 100vh"
-      @change="(index) => (current = index)"
+      @change="
+        (index) => {
+          current = index
+          if (videoRefs[index]) {
+            // 重置播放的时间点
+            videoRefs[index].currentTime = 0
+          }
+        }
+      "
     >
-      <Swiper.Item v-for="item in cars" :key="item.name">
-        <video :src="item.videoUrl" class="video" autoplay muted loop />
+      <Swiper.Item v-for="(item, index) in cars" :key="item.name">
+        <img
+          v-if="item.pictureUrl"
+          :src="item.pictureUrl"
+          class="banner"
+          alt=""
+        />
+        <video
+          v-else-if="item.videoUrl"
+          :src="item.videoUrl"
+          :ref="(el) => (videoRefs[index] = el)"
+          class="banner"
+          autoplay
+          muted
+          loop
+        />
         <div class="content-wrapper">
           <XIcon class="x" />
           <div class="title" v-html="item.title" />
           <div class="btn-group">
-            <RouterLink :to="`/${item.name.toLowerCase()}`">
+            <RouterLink :to="`/${item.id}`">
               <Button color="#fff" arrow arrow-color="#fff">
                 了解{{ item.name }}
               </Button>
@@ -36,7 +59,7 @@ const swiperRef = ref()
       </Swiper.Item>
     </Swiper.Container>
 
-    <Grid columns="4" gap="0.4rem" class="dots">
+    <Grid :columns="cars.length" gap="0.4rem" class="dots">
       <div
         class="dot-item"
         :key="item.name"
@@ -77,7 +100,7 @@ const swiperRef = ref()
   }
 }
 
-.video {
+.banner {
   width: 100%;
   height: 100%;
   object-fit: cover;
