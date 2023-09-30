@@ -1,7 +1,6 @@
 <script setup lang="ts">
 import EnduranceBottomBar from '@/components/EnduranceBottomBar/EnduranceBottomBar.vue'
-import Grid from '@/components/Grid/Grid.vue'
-import ScalableImage from '@/components/ScalableImage/ScalableImage.vue'
+import ImageCardsRow from '@/components/ImageCardsRow/ImageCardsRow.vue'
 import ShrinkableBanner from '@/components/ShrinkableBanner/ShrinkableBanner.vue'
 import { options } from './resources.ts'
 </script>
@@ -26,39 +25,16 @@ import { options } from './resources.ts'
       ]"
       style="bottom: 85rem"
     />
-    <Grid :columns="options.length" gap="3.2rem" class="card-list">
-      <div class="card-item" v-for="item in options" :key="item.title">
-        <ScalableImage :src="item.src" />
-        <div class="title" v-html="item.title" />
-        <div class="subtitle" v-html="item.subtitle" />
-      </div>
-    </Grid>
+    <ImageCardsRow
+      :options="options"
+      item-width="41.8rem"
+      style="
+        position: absolute;
+        bottom: 12rem;
+        left: 50%;
+        transform: translateX(-50%);
+        padding: 0;
+      "
+    />
   </div>
 </template>
-
-<style scoped>
-.card-list {
-  position: absolute;
-  bottom: 12rem;
-  left: 50%;
-  transform: translateX(-50%);
-
-  .card-item {
-    width: 41.8rem;
-
-    .title {
-      font-size: 1.8rem;
-      margin-top: 2.4rem;
-      margin-bottom: 1.6rem;
-      letter-spacing: 0.2rem;
-      line-height: 2rem;
-    }
-
-    .subtitle {
-      font-size: 1.4rem;
-      color: #666;
-      letter-spacing: 0.2rem;
-    }
-  }
-}
-</style>

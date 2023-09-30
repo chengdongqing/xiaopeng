@@ -5,7 +5,7 @@ import NameValueGroup from '@/components/NameValueGroup/NameValueGroup.vue'
 defineProps<{
   id: string
   name: string
-  options: {
+  options?: {
     name: string
     value: number
     unit: string
@@ -15,7 +15,7 @@ defineProps<{
 
 <template>
   <div class="endurance-bottom-bar">
-    <NameValueGroup :options="options" class="left" />
+    <NameValueGroup v-if="options" :options="options" class="left" />
     <div class="right">
       <RouterLink :to="`/configurations/${id}`">
         <Button arrow color="#fff" arrow-color="#fff">{{ name }}配置表</Button>

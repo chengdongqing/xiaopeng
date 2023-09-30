@@ -76,6 +76,7 @@ const current = ref(0)
       font-weight: 200;
       font-size: 1.8rem;
       line-height: 2.5rem;
+      white-space: pre-wrap;
       letter-spacing: 0.6rem;
     }
 
@@ -86,6 +87,7 @@ const current = ref(0)
       line-height: 2.6rem;
       color: #fff;
       left: 0.2rem;
+      white-space: pre-wrap;
     }
   }
 }

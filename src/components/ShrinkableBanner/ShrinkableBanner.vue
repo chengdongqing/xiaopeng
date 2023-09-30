@@ -4,7 +4,7 @@ import useElementScale from '@/hooks/useElementScale.ts'
 import { ref } from 'vue'
 
 const props = defineProps<{
-  title: string
+  title?: string
   subtitle?: string
   src: string
   videoUrl?: string
@@ -29,6 +29,7 @@ const scale = props.static ? ref(100) : useElementScale(containerRef)
 
       <div class="content-wrapper">
         <div
+          v-if="title"
           class="title"
           :style="{
             transform: `translate3d(0, ${100 - scale}px, 0)`,

@@ -1,6 +1,4 @@
 <script setup lang="ts">
-
-
 defineProps<{
   options: {
     title: string
@@ -34,8 +32,8 @@ defineProps<{
       <img v-else :src="item.src" alt="" />
 
       <div class="content-wrapper">
-        <div class="title">{{ item.title }}</div>
-        <div class="description">{{ item.description }}</div>
+        <div class="title" v-html="item.title" />
+        <div class="description" v-html="item.description" />
         <div class="content" v-if="item.children">
           <div
             class="content-item"

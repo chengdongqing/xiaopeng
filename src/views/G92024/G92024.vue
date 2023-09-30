@@ -232,5 +232,3 @@ import {
 
   <SectionFooter />
 </template>
-
-<style scoped></style>
