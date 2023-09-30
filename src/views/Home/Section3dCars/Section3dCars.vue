@@ -21,6 +21,7 @@ const car = computed(() => cars[current.value])
         @click="swiperRef.goTo(index)"
       >
         {{ item.name }}
+        <div class="label" v-if="item.label">{{ item.label }}</div>
       </div>
     </div>
 
@@ -46,7 +47,7 @@ const car = computed(() => cars[current.value])
     <div class="content-wrapper">
       <div class="description">{{ car.description }}</div>
       <div>
-        <RouterLink :to="`/${car.name.toLowerCase()}`">
+        <RouterLink :to="`/${car.id}`">
           <Button class="btn" arrow>了解{{ car.name }}</Button>
         </RouterLink>
         <Button class="btn right" arrow>立即订购</Button>
@@ -71,12 +72,18 @@ const car = computed(() => cars[current.value])
     padding-left: 4.5rem;
     padding-right: 4.5rem;
     transition: 0.3s;
+    text-align: center;
     cursor: pointer;
     opacity: 0.2;
 
     &.active,
     &:hover {
       opacity: 1;
+    }
+
+    .label {
+      font-size: 1.2rem;
+      line-height: 1.2;
     }
   }
 }
