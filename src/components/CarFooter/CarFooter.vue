@@ -7,14 +7,14 @@ import { ref } from 'vue'
 import { options1 } from './resources.ts'
 
 defineProps<{
-  carIndex: number
+  carId: string
 }>()
 
 const showMore = ref(false)
 </script>
 
 <template>
-  <ReserveForm :value="carIndex" />
+  <ReserveForm :id="carId" />
 
   <Grid class="p1" columns="2" item-width="64.4rem" gap="3.2rem">
     <a

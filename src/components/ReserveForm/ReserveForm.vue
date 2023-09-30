@@ -5,10 +5,11 @@ import { ref } from 'vue'
 import cars from './cars.ts'
 
 const props = defineProps<{
-  value?: number
+  id?: string
 }>()
 
-const current = ref(props.value || 0)
+const index = cars.findIndex((item) => item.id === props.id)
+const current = ref(index > -1 ? index : 0)
 
 function handleCarChange(e: Event) {
   current.value = Number((e.target as HTMLSelectElement)?.value)
@@ -36,7 +37,7 @@ function handleCarChange(e: Event) {
 
       <form class="form" @submit.prevent="">
         <select
-          v-if="props.value === undefined"
+          v-if="props.id === undefined"
           class="form-item select"
           name="model"
           :value="current"

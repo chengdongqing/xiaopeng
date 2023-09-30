@@ -24,6 +24,7 @@ defineProps<{
 <style scoped>
 .name-value-group {
   display: flex;
+  align-items: center;
   justify-content: space-between;
   color: #fff;
 

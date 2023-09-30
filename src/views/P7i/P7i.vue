@@ -9,7 +9,7 @@ import ShrinkableBanner from '@/components/ShrinkableBanner/ShrinkableBanner.vue
 import SlideSwiper from '@/components/SlideSwiper/SlideSwiper.vue'
 import TabsSwiper from '@/components/TabsSwiper/TabsSwiper.vue'
 import TitleBar from '@/components/TitleBar/TitleBar.vue'
-import SectionBrake from '@/views/P7i/SectionBrake/SectionBrake.vue'
+import WaterfallFlow from '@/components/WaterfallFlow/WaterfallFlow.vue'
 import SectionCabin from '@/views/P7i/SectionCabin/SectionCabin.vue'
 import SectionChassis from '@/views/P7i/SectionChassis/SectionChassis.vue'
 import SectionDrivingModes from '@/views/P7i/SectionDrivingModes/SectionDrivingModes.vue'
@@ -21,6 +21,7 @@ import SectionXHP from '@/views/P7i/SectionXHP/SectionXHP.vue'
 import SectionXmart from '@/views/P7i/SectionXmart/SectionXmart.vue'
 import {
   options1,
+  options10,
   options2,
   options3,
   options4,
@@ -117,7 +118,7 @@ import {
 
   <TabsSwiper :options="options8" />
 
-  <SectionBrake />
+  <WaterfallFlow :options="options9" />
 
   <ShrinkableBanner
     title="智能四驱扭矩分配系统"
@@ -137,6 +138,7 @@ import {
       src="https://s.xiaopeng.com/xp-fe/mainsite/2023/p7i/p23.jpg"
     />
     <EnduranceBottomBar
+      id="p7i"
       name="P7i"
       :options="[
         {
@@ -153,7 +155,7 @@ import {
     />
   </div>
 
-  <TabsSwiper :options="options9">
+  <TabsSwiper :options="options10">
     <template v-slot:title>
       <TitleBar color="#fff" title="领先安全，自由驾趣" />
     </template>

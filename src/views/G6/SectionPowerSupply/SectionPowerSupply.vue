@@ -14,6 +14,7 @@ import TitleBar from '@/components/TitleBar/TitleBar.vue'
       src="https://s.xiaopeng.com/xp-fe/mainsite/2023/g6/v1_5/p15-1.jpg"
     />
     <EnduranceBottomBar
+      id="g6"
       name="G6"
       :options="[
         {

@@ -1,17 +1,20 @@
 <script setup lang="ts">
-import { capitalizeFirstLetter } from '@/utils'
-import { ref } from 'vue'
+import { ref, watch } from 'vue'
 import ConfigsTable from './ConfigsTable.vue'
 import { useActiveNav, useConfigurations } from './helpers.ts'
 
 const current = ref(0)
 const hiddenSameValueRow = ref(false)
 
-const { id, configs, remarks, models } = useConfigurations(current)
+const { id, name, configs, remarks, models } = useConfigurations(current)
 const activeNav = useActiveNav(configs)
 
-const name = capitalizeFirstLetter(id)
-document.title = `小鹏${name}参数配置、小鹏${name}内饰、多少钱 | 小鹏汽车`
+watch(
+  () => name.value,
+  () => {
+    document.title = `${name.value}参数配置表 | 小鹏汽车`
+  }
+)
 </script>
 
 <template>
@@ -66,7 +69,7 @@ document.title = `小鹏${name}参数配置、小鹏${name}内饰、多少钱 | 
       />
       <div class="remarks">
         <p>备注：</p>
-        <p>● 标准配置 ○ 选装配置 - 无此配置</p>
+        <p>● 标准配置 ○ 选装配置 - 无此配置 ￥ 选配价格</p>
         <p v-for="item in remarks" :key="item">{{ item }}</p>
         <br /><br />
         <p>*全国建议零售价格仅针对私人购买，不含非私人购买或用于营运的车辆；</p>

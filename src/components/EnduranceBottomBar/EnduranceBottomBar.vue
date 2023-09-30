@@ -3,6 +3,7 @@ import Button from '@/components/Button/Button.vue'
 import NameValueGroup from '@/components/NameValueGroup/NameValueGroup.vue'
 
 defineProps<{
+  id: string
   name: string
   options: {
     name: string
@@ -16,7 +17,7 @@ defineProps<{
   <div class="endurance-bottom-bar">
     <NameValueGroup :options="options" class="left" />
     <div class="right">
-      <RouterLink :to="`/configurations/${name.toLowerCase()}`">
+      <RouterLink :to="`/configurations/${id}`">
         <Button arrow color="#fff" arrow-color="#fff">{{ name }}配置表</Button>
       </RouterLink>
       <Button arrow class="btn-right">里程计算器</Button>

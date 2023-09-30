@@ -1,9 +1,11 @@
 import useThrottle from '@/hooks/useThrottle.ts'
+import { capitalizeFirstLetter } from '@/utils'
 import { computed, onMounted, onUnmounted, Ref, ref, watch } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 import { ConfigurationProps, ModelItemProps } from './index'
 
 export function useConfigurations(current: Ref<number>) {
+  const name = ref('')
   const configs = ref<ConfigurationProps[]>([])
   const remarks = ref<string[]>([])
 
@@ -13,6 +15,7 @@ export function useConfigurations(current: Ref<number>) {
   const id = params.id as string
   import(`./configs/${id}.ts`)
     .then((res) => {
+      name.value = res.name || capitalizeFirstLetter(id)
       configs.value = res.configs
       remarks.value = res.remarks
     })
@@ -24,6 +27,7 @@ export function useConfigurations(current: Ref<number>) {
 
   return {
     id,
+    name,
     configs,
     remarks,
     models

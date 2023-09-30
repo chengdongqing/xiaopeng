@@ -3,7 +3,7 @@ import CarFooter from '@/components/CarFooter/CarFooter.vue'
 </script>
 
 <template>
-  <CarFooter :car-index="0">
+  <CarFooter car-id="g6">
     <template v-slot:remarks>
       <p>
         *画面渲染创意，仅做展示功能使用，并不代表交付车辆所搭载的UI和具体功能的标准。详情请后续留意小鹏汽车官方和销售门店，以最终实际交付车辆的情况为准。

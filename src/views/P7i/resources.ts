@@ -160,6 +160,24 @@ export const options8 = [
 
 export const options9 = [
   {
+    title: '前四活塞Brembo固定卡钳\n四轮Brembo通风刹车盘',
+    description: '高性能制动，刹停随心，安全随行',
+    src: 'https://s.xiaopeng.com/xp-fe/mainsite/2023/p7i/p19-1.jpg'
+  },
+  {
+    title: 'BOSCH制动系统',
+    description: '制动有力，平稳掌控',
+    src: 'https://s.xiaopeng.com/xp-fe/mainsite/2023/p7i/p19-2.jpg'
+  },
+  {
+    title: 'SACHS专业减震器',
+    description: 'FIA赛事级供应商，提供专业级体验',
+    src: 'https://s.xiaopeng.com/xp-fe/mainsite/2023/p7i/p19-3.mp4'
+  }
+]
+
+export const options10 = [
+  {
     title: '中欧最高碰撞安全标准设计',
     description: 'C-NCAP & E-NCAP双五星碰撞标准设计',
     src: 'https://s.xiaopeng.com/xp-fe/mainsite/2023/p7i/p24-1.jpg'

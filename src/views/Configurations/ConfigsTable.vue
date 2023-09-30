@@ -104,7 +104,8 @@ defineProps<{
     }
 
     &:deep(:is(td):first-child) {
-      width: 24%;
+      width: 25%;
+      white-space: pre-wrap;
     }
 
     &:deep(:is(td):not(:first-child)) {
