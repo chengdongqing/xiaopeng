@@ -27,7 +27,7 @@ export function useDarkTheme(isCarsVisible: Ref<boolean>) {
   return computed(() => {
     return (
       isCarsVisible.value ||
-      (route.path === '/' && isScrolled.value) ||
+      (['/', '/sepa'].includes(route.path) && isScrolled.value) ||
       route.path === '/stores'
     )
   })
@@ -45,7 +45,8 @@ export function useIsOtherPage() {
     'p7',
     'p5',
     'g3i',
-    'stores'
+    'stores',
+    'sepa'
   ].map((item) => {
     return `/${item}`
   })

@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import NameValueGroup from '@/components/NameValueGroup/NameValueGroup.vue'
 import * as Swiper from '@/components/Swiper'
 import { ref } from 'vue'
 
@@ -8,7 +9,16 @@ defineProps<{
     description?: string
     pictureUrl: string
     videoUrl?: string
+    dataItems?: {
+      name: string
+      value: number
+      unit?: string
+    }[]
   }[]
+}>()
+
+const emits = defineEmits<{
+  change: [index: number]
 }>()
 
 const swiperRef = ref()
@@ -22,7 +32,12 @@ const current = ref(0)
       ref="swiperRef"
       :duration="1000"
       :autoplay="false"
-      @change="(index) => (current = index)"
+      @change="
+        (index) => {
+          current = index
+          emits('change', index)
+        }
+      "
     >
       <Swiper.Item v-for="(item, index) in options" :key="item.title">
         <video
@@ -40,6 +55,11 @@ const current = ref(0)
             v-if="item.description"
             class="description"
             v-html="item.description"
+          />
+          <NameValueGroup
+            v-if="item.dataItems"
+            :options="item.dataItems"
+            :style="`width: ${21.1 * item.dataItems.length}rem; margin: auto`"
           />
         </div>
       </Swiper.Item>

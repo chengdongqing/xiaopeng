@@ -78,6 +78,10 @@ const router = createRouter({
         {
           path: '/stores',
           component: () => import('@/views/Stores/Stores.vue')
+        },
+        {
+          path: '/sepa',
+          component: () => import('@/views/Sepa/Sepa.vue')
         }
       ]
     },
