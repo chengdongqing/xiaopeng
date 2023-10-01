@@ -1,13 +1,18 @@
 <script setup lang="ts">
 defineProps<{
   options: {
+    note?: string
     title: string
-    description: string
+    description?: string
     src: string
-    children?: {
+    dataItems?: {
       name: string
       value: string
       unit: string
+    }[]
+    descriptions?: {
+      title?: string
+      description: string
     }[]
   }[]
   defaultReverse?: boolean
@@ -32,12 +37,17 @@ defineProps<{
       <img v-else :src="item.src" alt="" />
 
       <div class="content-wrapper">
+        <div class="note" v-if="item.note" v-html="item.note" />
         <div class="title" v-html="item.title" />
-        <div class="description" v-html="item.description" />
-        <div class="content" v-if="item.children">
+        <div
+          class="description"
+          v-if="item.description"
+          v-html="item.description"
+        />
+        <div class="data-items" v-if="item.dataItems">
           <div
-            class="content-item"
-            v-for="child in item.children"
+            class="data-item"
+            v-for="child in item.dataItems"
             :key="child.name"
           >
             <div class="name">{{ child.name }}</div>
@@ -46,6 +56,10 @@ defineProps<{
             </div>
           </div>
         </div>
+        <template v-for="child in item.descriptions" :key="child.description">
+          <div v-if="child.title" class="child-title">{{ child.title }}</div>
+          <div class="child-description">{{ child.description }}</div>
+        </template>
       </div>
     </div>
   </div>
@@ -83,6 +97,14 @@ defineProps<{
       width: 60rem;
       margin-left: 8rem;
 
+      .note {
+        color: #666;
+        font-size: 1.6rem;
+        white-space: pre-wrap;
+        letter-spacing: 0.2rem;
+        margin-bottom: 1.6rem;
+      }
+
       .title {
         font-size: 3.2rem;
         white-space: pre-wrap;
@@ -97,11 +119,11 @@ defineProps<{
         letter-spacing: 0.2rem;
       }
 
-      .content {
+      .data-items {
         margin-top: 8rem;
         display: flex;
 
-        .content-item {
+        .data-item {
           width: 15.3rem;
 
           .name {
@@ -120,6 +142,24 @@ defineProps<{
             }
           }
         }
+      }
+
+      .child-title {
+        font-size: 1.6rem;
+        font-weight: bold;
+        line-height: 1.3;
+        letter-spacing: 0.4rem;
+        margin-bottom: 0.8rem;
+      }
+
+      .child-description {
+        color: #666;
+        font-size: 1.6rem;
+        font-weight: 200;
+        line-height: 2.8rem;
+        letter-spacing: 0.4rem;
+        margin-bottom: 2.4rem;
+        white-space: pre-wrap;
       }
     }
   }

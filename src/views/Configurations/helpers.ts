@@ -26,7 +26,6 @@ export function useConfigurations(current: Ref<number>) {
   })
 
   return {
-    id,
     name,
     configs,
     remarks,

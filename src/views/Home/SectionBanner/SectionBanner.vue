@@ -8,7 +8,7 @@ import cars from './cars.ts'
 
 const current = ref(0)
 const swiperRef = ref()
-const videoRefs = ref<HTMLVideoElement[]>(Array(cars.length))
+const videoRefs = ref(Array(cars.length))
 </script>
 
 <template>

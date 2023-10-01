@@ -14,6 +14,7 @@ defineProps<{
       value: number
       unit?: string
     }[]
+    descriptions?: string[]
   }[]
 }>()
 
@@ -59,8 +60,17 @@ const current = ref(0)
           <NameValueGroup
             v-if="item.dataItems"
             :options="item.dataItems"
-            :style="`width: ${21.1 * item.dataItems.length}rem; margin: auto`"
+            style="justify-content: center; gap: 6.6rem"
           />
+          <div v-if="item.descriptions" class="descriptions">
+            <div
+              class="description-item"
+              v-for="desc in item.descriptions"
+              :key="desc"
+            >
+              {{ desc }}
+            </div>
+          </div>
         </div>
       </Swiper.Item>
     </Swiper.Container>
@@ -108,6 +118,36 @@ const current = ref(0)
       color: #fff;
       left: 0.2rem;
       white-space: pre-wrap;
+    }
+
+    .descriptions {
+      display: flex;
+      align-items: center;
+
+      .description-item {
+        flex: 1;
+        color: #fff;
+        text-align: center;
+        font-size: 1.6rem;
+        font-weight: 200;
+        letter-spacing: 0.2rem;
+        white-space: pre-wrap;
+
+        &::after {
+          content: '';
+          position: absolute;
+          right: 0;
+          top: 50%;
+          transform: translateY(-50%);
+          width: 0.2rem;
+          height: 3rem;
+          background-color: hsla(0, 0%, 100%, 0.4);
+        }
+
+        &:last-child::after {
+          width: 0;
+        }
+      }
     }
   }
 }

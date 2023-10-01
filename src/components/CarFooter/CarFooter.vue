@@ -6,9 +6,15 @@ import ScalableImage from '@/components/ScalableImage/ScalableImage.vue'
 import { ref } from 'vue'
 import { options1 } from './resources.ts'
 
-defineProps<{
-  carId: string
-}>()
+withDefaults(
+  defineProps<{
+    carId: string
+    overHeight?: boolean
+  }>(),
+  {
+    overHeight: true
+  }
+)
 
 const showMore = ref(false)
 </script>
@@ -87,7 +93,7 @@ const showMore = ref(false)
     >
       <slot name="remarks" />
     </div>
-    <div class="btn-showMore" @click="showMore = !showMore">
+    <div v-if="overHeight" class="btn-showMore" @click="showMore = !showMore">
       {{ !showMore ? '展开更多' : '收起' }}
       <ArrowRight class="icon" :class="{ active: showMore }" />
     </div>

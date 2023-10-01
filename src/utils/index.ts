@@ -11,3 +11,10 @@ export function formatAmount(value: number | string = 0) {
 export function capitalizeFirstLetter(value: string) {
   return value.charAt(0).toUpperCase() + value.slice(1)
 }
+
+/**
+ * 给字符串的开头补零
+ */
+export function padStartZero(value: string | number, length = 2) {
+  return value?.toString().padStart(length, '0')
+}

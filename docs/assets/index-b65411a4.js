@@ -1,0 +1,1 @@
+function n(t=0){return t.toString().replace(/\B(?=(\d{3})+(?!\d))/g,",")}function o(t){return t.charAt(0).toUpperCase()+t.slice(1)}function i(t,r=2){return t==null?void 0:t.toString().padStart(r,"0")}export{o as c,n as f,i as p};

@@ -6,7 +6,7 @@ import { useActiveNav, useConfigurations } from './helpers.ts'
 const current = ref(0)
 const hiddenSameValueRow = ref(false)
 
-const { id, name, configs, remarks, models } = useConfigurations(current)
+const { name, configs, remarks, models } = useConfigurations(current)
 const activeNav = useActiveNav(configs)
 
 watch(

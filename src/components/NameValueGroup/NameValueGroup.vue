@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import { formatAmount } from '@/utils'
+
 defineProps<{
   options: {
     name: string
@@ -14,7 +16,7 @@ defineProps<{
     <div v-for="item in options" :key="item.name">
       <div class="name" v-html="item.name" />
       <div class="value">
-        <span>{{ item.value }}</span>
+        {{ formatAmount(item.value) }}
         <span v-if="item.unit" class="unit">{{ item.unit }}</span>
       </div>
     </div>
@@ -26,6 +28,7 @@ defineProps<{
   display: flex;
   align-items: center;
   justify-content: space-between;
+  text-align: left;
   color: #fff;
 
   &.dark {
@@ -45,12 +48,12 @@ defineProps<{
 
   .value {
     font-size: 4rem;
+    font-weight: 300;
     line-height: 5.6rem;
 
     .unit {
       font-size: 1.6rem;
       font-weight: 200;
-      margin-left: 0.4rem;
     }
   }
 }
