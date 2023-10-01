@@ -34,7 +34,7 @@ function handleSwiperChange(index: number) {
 </script>
 
 <template>
-  <div style="padding-bottom: 12rem">
+  <div>
     <div class="titles-container">
       <TitleBar
         v-for="(item, index) in titles"
@@ -52,7 +52,7 @@ function handleSwiperChange(index: number) {
     <CardSwiper
       :options="options"
       @change="handleSwiperChange"
-      style="padding: 0"
+      style="padding-top: 0"
     />
   </div>
 </template>

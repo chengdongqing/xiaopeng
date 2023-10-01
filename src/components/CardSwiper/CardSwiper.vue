@@ -28,58 +28,60 @@ const current = ref(0)
 
 <template>
   <div class="card-swiper">
-    <Swiper.Container
-      card
-      ref="swiperRef"
-      :duration="1000"
-      :autoplay="false"
-      @change="
-        (index) => {
-          current = index
-          emits('change', index)
-        }
-      "
-    >
-      <Swiper.Item v-for="(item, index) in options" :key="item.title">
-        <video
-          v-if="item.videoUrl && index === current"
-          :src="item.videoUrl"
-          autoplay
-          muted
-          loop
-        />
-        <img v-else :src="item.pictureUrl" alt="" />
+    <div>
+      <Swiper.Container
+        card
+        ref="swiperRef"
+        :duration="1000"
+        :autoplay="false"
+        @change="
+          (index) => {
+            current = index
+            emits('change', index)
+          }
+        "
+      >
+        <Swiper.Item v-for="(item, index) in options" :key="item.title">
+          <video
+            v-if="item.videoUrl && index === current"
+            :src="item.videoUrl"
+            autoplay
+            muted
+            loop
+          />
+          <img v-else :src="item.pictureUrl" alt="" />
 
-        <div class="content-wrapper">
-          <div v-if="item.title" class="title" v-html="item.title" />
-          <div
-            v-if="item.description"
-            class="description"
-            v-html="item.description"
-          />
-          <NameValueGroup
-            v-if="item.dataItems"
-            :options="item.dataItems"
-            style="justify-content: center; gap: 6.6rem"
-          />
-          <div v-if="item.descriptions" class="descriptions">
+          <div class="content-wrapper">
+            <div v-if="item.title" class="title" v-html="item.title" />
             <div
-              class="description-item"
-              v-for="desc in item.descriptions"
-              :key="desc"
-            >
-              {{ desc }}
+              v-if="item.description"
+              class="description"
+              v-html="item.description"
+            />
+            <NameValueGroup
+              v-if="item.dataItems"
+              :options="item.dataItems"
+              style="justify-content: center; gap: 6.6rem"
+            />
+            <div v-if="item.descriptions" class="descriptions">
+              <div
+                class="description-item"
+                v-for="desc in item.descriptions"
+                :key="desc"
+              >
+                {{ desc }}
+              </div>
             </div>
           </div>
-        </div>
-      </Swiper.Item>
-    </Swiper.Container>
-    <Swiper.ButtonGroup
-      :swiper-ref="swiperRef"
-      offset="14%"
-      :left-visible="current > 0"
-      :right-visible="current < options.length - 1"
-    />
+        </Swiper.Item>
+      </Swiper.Container>
+      <Swiper.ButtonGroup
+        :swiper-ref="swiperRef"
+        offset="14%"
+        :left-visible="current > 0"
+        :right-visible="current < options.length - 1"
+      />
+    </div>
   </div>
 </template>
 

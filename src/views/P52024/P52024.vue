@@ -166,8 +166,8 @@ import {
   />
 
   <div style="background-color: var(--color-background)">
-    <TitleBar title="智能泊车，让泊车更轻松" style="padding-bottom: 0" />
-    <CardSwiper :options="options6" />
+    <TitleBar title="智能泊车，让泊车更轻松" />
+    <CardSwiper :options="options6" style="padding-top: 0" />
   </div>
 
   <div>
