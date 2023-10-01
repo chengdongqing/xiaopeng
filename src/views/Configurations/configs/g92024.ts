@@ -1182,7 +1182,7 @@ export const configs: ConfigurationProps[] = [
       },
       {
         subModelName: '702 Max',
-        price: 289900,
+        price: 309900,
         children: [
           {
             title: '基础参数',
