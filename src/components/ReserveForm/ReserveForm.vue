@@ -4,9 +4,17 @@ import TitleBar from '@/components/TitleBar/TitleBar.vue'
 import { ref } from 'vue'
 import cars from './cars.ts'
 
-const props = defineProps<{
-  id?: string
-}>()
+const props = withDefaults(
+  defineProps<{
+    id?: string
+    title?: string
+    subtitle?: string
+  }>(),
+  {
+    title: '预约试驾',
+    subtitle: '试乘试驾小鹏汽车，真实体验小鹏产品及服务'
+  }
+)
 
 const index = cars.findIndex((item) => item.id === props.id)
 const current = ref(index > -1 ? index : 0)
@@ -18,10 +26,7 @@ function handleCarChange(e: Event) {
 
 <template>
   <div class="container">
-    <TitleBar
-      title="预约试驾"
-      subtitle="试乘试驾小鹏汽车，真实体验小鹏产品及服务"
-    />
+    <TitleBar :title="title" :subtitle="subtitle" />
 
     <div class="main">
       <div class="images-wrapper">

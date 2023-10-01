@@ -1,4 +1,4 @@
-export const options1 = [
+export const options = [
   {
     title: '充电',
     subtitle: '不止于快，让鹏友没有里程焦虑',

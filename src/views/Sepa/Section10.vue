@@ -3,7 +3,12 @@ import CarFooter from '@/components/CarFooter/CarFooter.vue'
 </script>
 
 <template>
-  <CarFooter car-id="g6" :over-height="false">
+  <CarFooter
+    car-id="g6"
+    title="预约咨询"
+    subtitle="扶摇架构下首款战略车型G6，等你来体验"
+    :over-height="false"
+  >
     <template v-slot:remarks>
       <p>
         *如无特殊说明，以上页面显示数据均来源于小鹏实验室，仅供参考，实际表现因各车型具体配置、车辆状况等因素有所差异，以实际使用为准。

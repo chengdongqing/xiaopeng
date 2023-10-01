@@ -4,11 +4,13 @@ import ArrowRight from '@/components/Icons/ArrowRight.vue'
 import ReserveForm from '@/components/ReserveForm/ReserveForm.vue'
 import ScalableImage from '@/components/ScalableImage/ScalableImage.vue'
 import { ref } from 'vue'
-import { options1 } from './resources.ts'
+import { options } from './resources.ts'
 
 withDefaults(
   defineProps<{
     carId: string
+    title?: string
+    subtitle?: string
     overHeight?: boolean
   }>(),
   {
@@ -20,11 +22,11 @@ const showMore = ref(false)
 </script>
 
 <template>
-  <ReserveForm :id="carId" />
+  <ReserveForm v-bind="{ id: carId, title, subtitle }" />
 
   <Grid class="p1" columns="2" item-width="64.4rem" gap="3.2rem">
     <a
-      v-for="item in options1"
+      v-for="item in options"
       :key="item.title"
       :href="item.href"
       target="_blank"
